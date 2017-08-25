@@ -1,0 +1,28 @@
+{
+  "name": "proyecto",
+  "version": "1.0.0",
+  "description": "Recipe manager",
+  "main": "app.js",
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "author": "Edixon Idrogo",
+  "license": "ISC",
+  "dependencies": {
+  	"body-parser": "*",
+    "method-override": "*",
+    "safe-buffer": "*",    
+  	"consolidate": "*",
+    "dust": "*",
+    "request": "*",
+  	"dustjs-helpers": "*",
+    "dustjs-linkedin": "*",
+    "express": "*",
+    "axios": "*",
+    "node-google-translate-skidz": "*",
+  	"pg": "*"
+
+
+
+  }
+}
