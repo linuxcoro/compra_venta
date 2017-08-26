@@ -57,13 +57,14 @@ app.get('/datos', function(req, res){
 		}));
 
 */
-		axios.get('http://api.bitcoinvenezuela.com/DolarToday.php?json=yes')
+		dolar = axios.get('http://api.bitcoinvenezuela.com/DolarToday.php?json=yes')
 		.then(function (dolarResponse) {
-			req.dolartoday = parseInt(dolarResponse.data.USD.dolartoday);
+			dolar = parseInt(dolarResponse.data.USD.dolartoday);
 		})
 		.catch(function (error) {
 			console.log(error);
 		});
+		req.dolartoday = dolar;
 
 		next();
 	};
