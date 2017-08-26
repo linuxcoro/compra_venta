@@ -54,7 +54,7 @@ var dolartoday = function (req, res, next) {
 		req.dolartoday = parseInt(dolarResponse.data.USD.dolartoday);
 	}
 	*/
-	req.dolartoday = "xxxxxxxxxx";
+	req.dolartoday = 100;
 	next();
 };
 app.use(dolartoday);
