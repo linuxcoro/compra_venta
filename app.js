@@ -421,7 +421,7 @@ app.get('/game', function(req, res){
 	    corte = valor.substring(inicio);
 	    fin = corte.indexOf("&");
 	    cadena = valor.substring(inicio,(inicio+fin));
-	    return (cadena*req.dolartoday);
+	    return (req.dolartoday);
 	};	
 
 
