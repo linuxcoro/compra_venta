@@ -45,15 +45,20 @@ app.get('/datos', function(req, res){
 	};	
 });
 
-	axios.all([getDolar()]).then(axios.spread(function (dolarResponse) {
-		
-		var dolartoday = function (req, res, next) {
-			req.dolartoday = parseInt(dolarResponse.data.USD.dolartoday);
-			next();
-		};
-		app.use(dolartoday);
+	var dolartoday = function (req, res, next) {
+		function getDolar() {
+		    return axios.get('http://api.bitcoinvenezuela.com/DolarToday.php?json=yes')
+		}
 
-	}
+		axios.all([getDolar()]).then(axios.spread(function (dolarResponse) {
+			
+			req.dolartoday = parseInt(dolarResponse.data.USD.dolartoday);
+
+		}));
+		next();
+	};
+	app.use(dolartoday);
+
 
 
 
