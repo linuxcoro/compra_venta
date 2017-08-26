@@ -368,7 +368,7 @@ app.get('/tabla', function(req, res){
 
 
 var requestTime = function (req, res, next) {
-  req.requestTime = Date.now();
+  req.requestTime = "esta entrada se agrega";
   next();
 };
 
