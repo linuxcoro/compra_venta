@@ -363,11 +363,18 @@ app.get('/tabla', function(req, res){
 
 			res.render('tabla', { 'comprar': comprar,'venta': transa, 'dolar': x2, 'com_pay': com_pay, 'tra_pay': tra_pay, 'com_net': com_net, 'tra_pay': tra_net });
 		}));
-
-
-
-
 });
+
+
+
+var requestTime = function (req, res, next) {
+  req.requestTime = Date.now();
+  next();
+};
+
+app.use(requestTime);
+
+
 
 app.get('/game', function(req, res){
 	function getAmazon() {
@@ -379,7 +386,7 @@ app.get('/game', function(req, res){
 		.then(axios.spread(function (amazonResponse) {
 		    var x3 = amazonResponse.data;
 			//res.render('game', { 'x': x3 });
-			res.render('game', { 'x': x3, 'error': Object.keys(x3) });
+			res.render('game', { 'x': x3, 'error': req.requestTime });
 		}))
 		.catch(function(err) {
 			res.render('game', { 'error': "recargue" });
