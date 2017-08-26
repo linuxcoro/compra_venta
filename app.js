@@ -46,7 +46,7 @@ app.get('/datos', function(req, res){
 });
 
 
-	dolar = axios.get('http://api.bitcoinvenezuela.com/DolarToday.php?json=yes')
+	var dolar = axios.get('http://api.bitcoinvenezuela.com/DolarToday.php?json=yes')
 	.then(function (dolarResponse) {
 		parseInt(dolarResponse.data.USD.dolartoday);
 	});			
