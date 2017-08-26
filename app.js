@@ -52,7 +52,7 @@ var dolartoday = function (req, res, next) {
 	}
 	axios.all([getDolar()]).then(axios.spread(function (dolarResponse) {
 		req.dolartoday = parseInt(dolarResponse.data.USD.dolartoday);
-	}
+	};
 	
 	//req.dolartoday = 100;
 	next();
