@@ -54,11 +54,14 @@ app.get('/datos', function(req, res){
 		console.log(error);
 	});			
 
-	var dolartoday = function (req, res, next) {
-		req.dolartoday=100
-		next();
-	};
-	app.use(dolartoday);
+	valor =100;
+	function prueba(valor){
+		var dolartoday = function (req, res, next) {
+			req.dolartoday=valor;
+			next();
+		};
+		app.use(dolartoday);		
+	}
 
 
 
