@@ -46,6 +46,8 @@ app.get('/datos', function(req, res){
 });
 
 	var dolartoday = function (req, res, next) {
+
+/*
 		function getDolar() {
 		    return axios.get('http://api.bitcoinvenezuela.com/DolarToday.php?json=yes')
 		}
@@ -53,7 +55,16 @@ app.get('/datos', function(req, res){
 		var dolar = axios.all([getDolar()]).then(axios.spread(function (dolarResponse) {			
 			parseInt(dolarResponse.data.USD.dolartoday);
 		}));
-		req.dolartoday = dolar;
+
+*/
+		axios.get('http://api.bitcoinvenezuela.com/DolarToday.php?json=yes')
+		.then(function (dolarResponse) {
+			req.dolartoday = parseInt(dolarResponse.data.USD.dolartoday);
+		})
+		.catch(function (error) {
+			console.log(error);
+		});
+
 		next();
 	};
 	app.use(dolartoday);
