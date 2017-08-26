@@ -45,32 +45,18 @@ app.get('/datos', function(req, res){
 	};	
 });
 
-	var dolartoday = function (req, res, next) {
 
-/*
-		function getDolar() {
-		    return axios.get('http://api.bitcoinvenezuela.com/DolarToday.php?json=yes')
-		}
-
-		var dolar = axios.all([getDolar()]).then(axios.spread(function (dolarResponse) {			
+	axios.get('http://api.bitcoinvenezuela.com/DolarToday.php?json=yes')
+	.then(function (dolarResponse) {
+		var dolartoday = function (req, res, next) {
 			parseInt(dolarResponse.data.USD.dolartoday);
-		}));
-
-*/
-		function getDolar(){
-			return axios.get('http://api.bitcoinvenezuela.com/DolarToday.php?json=yes')
-			.then(function (dolarResponse) {
-				parseInt(dolarResponse.data.USD.dolartoday);
-			})
-			.catch(function (error) {
-				console.log(error);
-			});			
-		}
-
-		req.dolartoday = getDolar();
-		next();
-	};
-	app.use(dolartoday);
+			next();
+		};
+		app.use(dolartoday);
+	})
+	.catch(function (error) {
+		console.log(error);
+	});			
 
 
 
