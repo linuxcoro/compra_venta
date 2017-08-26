@@ -52,9 +52,10 @@ app.get('/datos', function(req, res){
 
 		axios.all([getDolar()]).then(axios.spread(function (dolarResponse) {
 			
-			req.dolartoday = parseInt(dolarResponse.data.USD.dolartoday);
-			next();
+			//req.dolartoday = parseInt(dolarResponse.data.USD.dolartoday);
+			req.dolartoday = 100;
 		}));
+		next();
 	};
 	app.use(dolartoday);
 
