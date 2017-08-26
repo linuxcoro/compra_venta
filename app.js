@@ -45,7 +45,7 @@ app.get('/datos', function(req, res){
 	};	
 });
 
-
+/*
 	var dolar = axios.get('http://api.bitcoinvenezuela.com/DolarToday.php?json=yes')
 	.then(function (dolarResponse) {
 		parseInt(dolarResponse.data.USD.dolartoday);
@@ -56,6 +56,8 @@ app.get('/datos', function(req, res){
 		next();
 	};
 	app.use(dolartoday);		
+
+*/
 
 
 
@@ -133,7 +135,7 @@ app.get('/tabla', function(req, res){
 	/*----------------------------------------------------------------------------------------------------*/
 	/* COMPRA EN BOLIVARES VENEZUELA*/
 		    x1 = compraBtcResponse.data.data.ad_list;
-			x2 = parseInt(dolarResponse.data.USD.dolartoday);
+			this.x2 = parseInt(dolarResponse.data.USD.dolartoday);
 			for (var h=0; h < trato.length; h++) { 
 			    var j = 0;
 				for (var i=0; i < x1.length; i++) { 
@@ -418,7 +420,7 @@ app.get('/game', function(req, res){
 	    corte = valor.substring(inicio);
 	    fin = corte.indexOf("&");
 	    cadena = valor.substring(inicio,(inicio+fin));
-	    return (req.dolartoday);
+	    return (this.x2);
 	};	
 
 
