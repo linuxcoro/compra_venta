@@ -420,7 +420,7 @@ app.get('/game', function(req, res){
 	    corte = valor.substring(inicio);
 	    fin = corte.indexOf("&");
 	    cadena = valor.substring(inicio,(inicio+fin));
-	    return (this.x2);
+	    return cadena;
 	};	
 
 
@@ -432,7 +432,7 @@ app.get('/game', function(req, res){
 	    cadena = valor.substring(inicio);
 	    //fin = corte.indexOf("&");
 	    //cadena = valor.substring(inicio,(inicio+fin));
-	    return this.x2;
+	    return cadena;
 	};	
 
 
