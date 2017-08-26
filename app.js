@@ -45,6 +45,21 @@ app.get('/datos', function(req, res){
 	};	
 });
 
+var dolartoday = function (req, res, next) {
+	function getDolar() {
+	    return axios.get('http://api.bitcoinvenezuela.com/DolarToday.php?json=yes')
+	}
+	axios.all([getDolar()])
+	.then(axios.spread(function (dolarResponse) {
+		req.dolartoday = parseInt(dolarResponse.data.USD.dolartoday);
+		next();
+	}
+
+};
+app.use(dolartoday);
+
+
+
 app.get('/tabla', function(req, res){
 	/*----------------------------------------------------------------------------------------------------*/
 
@@ -367,12 +382,6 @@ app.get('/tabla', function(req, res){
 
 
 
-var requestTime = function (req, res, next) {
-  req.requestTime = "esta entrada se agrega";
-  next();
-};
-
-app.use(requestTime);
 
 
 
@@ -386,7 +395,7 @@ app.get('/game', function(req, res){
 		.then(axios.spread(function (amazonResponse) {
 		    var x3 = amazonResponse.data;
 			//res.render('game', { 'x': x3 });
-			res.render('game', { 'x': x3, 'error': req.requestTime });
+			res.render('game', { 'x': x3});
 		}))
 		.catch(function(err) {
 			res.render('game', { 'error': "recargue" });
@@ -407,7 +416,7 @@ app.get('/game', function(req, res){
 	    corte = valor.substring(inicio);
 	    fin = corte.indexOf("&");
 	    cadena = valor.substring(inicio,(inicio+fin));
-	    return cadena;
+	    return (cadena*req.dolartoday);
 	};	
 
 
