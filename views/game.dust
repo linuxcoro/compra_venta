@@ -5,15 +5,15 @@
 {btc_bs} btc en bs<br>
 {btc_ds} btc en ds<br>
 
-<div class="album text-muted">
-  <div class="container">
 
+<div class="container">
+  <!-- Example row of columns -->
+  <div class="row">
 {#x}
-    <div class="row">
-<!--      <div class="card">-->
-      	<img src={picture}>
-        <p class="card-text">
-			{@traduce name="{name}" /}<br>
+			
+    <div class="col-md-4">
+      <h2>{@traduce name="{name}" /}</h2>
+      <p>
 			{@traduce name="{date-added}" /}<br>
 			{@traduce name="{priority}" /}<br>
 
@@ -22,15 +22,18 @@
 			{:else}
 				{@convertir_btc2 valor="{new-price}" btc_ds="{btc_ds}"  btc="{btc_bs}" /} predio btc<br>
 			{/gt}
-        </p>
-
-      <!--</div>-->
+      <p>
+      	<a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
     </div>
 
 {/x}
+
+
+  </div>
+
+</div> <!-- /container -->
+
      
-  </div>      
-</div>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 
