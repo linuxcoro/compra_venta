@@ -5,15 +5,47 @@
 {btc_bs} btc en bs<br>
 {btc_ds} btc en ds<br>
 
-{#x}
-	{@traduce name="{name}" /}<br>
-	{@traduce name="{date-added}" /}<br>
-	{@traduce name="{priority}" /}<br>
+<div class="album text-muted">
+  <div class="container">
+    <div class="row">
 
-	{@gt key=new-price.length value="10"}
-		{@convertir_btc valor="{new-price}" btc_ds="{btc_ds}" btc="{btc_bs}" /} precio btc<br>
-	{:else}
-		{@convertir_btc2 valor="{new-price}" btc_ds="{btc_ds}"  btc="{btc_bs}" /} predio btc<br>
-	{/gt}
-	<img src={picture}>
+{#x}
+      <div class="card">
+      	<img src={picture} alt="Card image cap">
+        <!--<img data-src="holder.js/100px280/thumb" alt="Card image cap">-->
+        <p class="card-text">
+			{@traduce name="{name}" /}<br>
+			{@traduce name="{date-added}" /}<br>
+			{@traduce name="{priority}" /}<br>
+
+			{@gt key=new-price.length value="10"}
+				{@convertir_btc valor="{new-price}" btc_ds="{btc_ds}" btc="{btc_bs}" /} precio btc<br>
+			{:else}
+				{@convertir_btc2 valor="{new-price}" btc_ds="{btc_ds}"  btc="{btc_bs}" /} predio btc<br>
+			{/gt}
+        </p>
+      </div>
 {/x}
+     
+    </div>
+  </div>      
+</div>
+
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+
+<script>window.jQuery || document.write('<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"><\/script>')</script>
+<script src="/js/popper.min.js"></script>
+<script src="/js/holder.min.js"></script>
+
+<script>
+  $(function () {
+    Holder.addTheme("thumb", { background: "#55595c", foreground: "#eceeef", text: "Thumbnail" });
+  });
+</script>
+
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/ie10-viewport-bug-workaround.js"></script>
