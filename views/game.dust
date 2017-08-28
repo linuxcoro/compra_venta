@@ -7,12 +7,11 @@
 
 <div class="album text-muted">
   <div class="container">
-    <div class="row">
 
 {#x}
-      <div class="card">
+    <div class="row">
+<!--      <div class="card">-->
       	<img src={picture}>
-        <!--<img data-src="holder.js/100px280/thumb" alt="Card image cap">-->
         <p class="card-text">
 			{@traduce name="{name}" /}<br>
 			{@traduce name="{date-added}" /}<br>
@@ -24,10 +23,12 @@
 				{@convertir_btc2 valor="{new-price}" btc_ds="{btc_ds}"  btc="{btc_bs}" /} predio btc<br>
 			{/gt}
         </p>
-      </div>
+
+      <!--</div>-->
+    </div>
+
 {/x}
      
-    </div>
   </div>      
 </div>
 
