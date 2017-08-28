@@ -29,7 +29,7 @@ const client = new Client({
 client.connect()
 
 app.get('/datos', function(req, res){
-	client.query("SELECT to_char(fecha,'yyyy/mm/dd hh24:mi') as x,trim(to_char(valor,'99999999')) as y FROM tipo_a", function(err,result){
+	client.query("SELECT to_char(fecha,'yyyy/mm/dd hh24:mi') as x,trim(to_char(valor,'99999999')) as y FROM medidas", function(err,result){
 		if (err) {
 			return console.error('error runing query',err);
 		};
@@ -45,9 +45,9 @@ app.get('/datos', function(req, res){
 	};	
 });
 
+
 app.get('/tabla', function(req, res){
 	/*----------------------------------------------------------------------------------------------------*/
-
 	/* COMPRA BOLIVARES VENEZUELA */
 	var data_compra = new Array();
 	var busca_compra = new Array();
@@ -363,23 +363,111 @@ app.get('/tabla', function(req, res){
 
 			res.render('tabla', { 'comprar': comprar,'venta': transa, 'dolar': x2, 'com_pay': com_pay, 'tra_pay': tra_pay, 'com_net': com_net, 'tra_pay': tra_net });
 		}));
-
-
-
-
 });
 
-app.get('/game', function(req, res){
-	function getAmazon() {
-	    //return axios.get('http://json.linuxcoro.com.ve/api/src/wishlist.php?id=1A7GB9IL1UAK2')
 
+
+
+
+
+app.get('/game', function(req, res){
+	/*----------------------------------------------------------------------------------------------------*/
+	/* COMPRA BOLIVARES VENEZUELA */
+	var data_compra = new Array();
+	var busca_compra = new Array();
+	var comprar = new Array();
+	var bs_cp = new Array();
+	/*----------------------------------------------------------------------------------------------------*/
+	function getAmazon() {
 	    return axios.get('http://json.linuxcoro.com.ve/api/src/wishlist.php?id=1A7GB9IL1UAK2&format=json')
 	}
-	axios.all([getAmazon()])
-		.then(axios.spread(function (amazonResponse) {
-		    var x3 = amazonResponse.data;
+
+	var trato = [100,100,500,1000,3000];
+	function getCompraBtc() {
+	    return axios.get('https://localbitcoins.com/buy-bitcoins-online/VEF/.json')
+	}
+
+	function getDolar() {
+	    return axios.get('http://api.bitcoinvenezuela.com/DolarToday.php?json=yes')
+	}
+
+	axios.all([getAmazon(),getCompraBtc(),getDolar()])
+		.then(axios.spread(function (amazonResponse,compraBtcResponse,dolarResponse) {
+		var x2 = parseInt(dolarResponse.data.USD.dolartoday);
+
+	/*----------------------------------------------------------------------------------------------------*/
+	/* COMPRA EN BOLIVARES VENEZUELA*/
+		    x1 = compraBtcResponse.data.data.ad_list;
+			for (var h=0; h < trato.length; h++) { 
+			    var j = 0;
+				for (var i=0; i < x1.length; i++) { 
+					clientes=parseInt(x1[i].data.profile.trade_count);
+					if (h==0) {
+
+						if (clientes<trato[h]) {
+							data_compra[j] = {
+								vendedor:x1[i].data.profile.username,				
+								bs:parseInt(x1[i].data.temp_price),
+								ds:parseInt(x1[i].data.temp_price/x2),
+								ventas:x1[i].data.profile.trade_count,
+								porcentaje:x1[i].data.profile.feedback_score,
+								desde:x1[i].data.min_amount,
+								hasta:x1[i].data.max_amount,
+								banco:x1[i].data.bank_name,
+								condicion:(x1[i].data.require_trade_volume>0)?"Si":"No"							
+							};
+							busca_compra[j]=data_compra[j].bs
+							j++;
+						}
+
+					}
+					else{
+
+
+						if (clientes==trato[h]) {
+							data_compra[j] = {
+								vendedor:x1[i].data.profile.username,				
+								bs:parseInt(x1[i].data.temp_price),
+								ds:parseInt(x1[i].data.temp_price/x2),
+								ventas:x1[i].data.profile.trade_count,
+								porcentaje:x1[i].data.profile.feedback_score,
+								desde:x1[i].data.min_amount,
+								hasta:x1[i].data.max_amount,
+								banco:x1[i].data.bank_name,
+								condicion:(x1[i].data.require_trade_volume>0)?"Si":"No"							
+							};
+							busca_compra[j]=data_compra[j].bs
+							j++;
+						}
+
+					};
+				}
+				men_comp = Math.max.apply(null, busca_compra);
+				ind_men_comp = busca_compra.indexOf(men_comp);
+				comprar[h] = {
+					vendedor:data_compra[ind_men_comp].vendedor,				
+					bs:data_compra[ind_men_comp].bs,
+					ds:data_compra[ind_men_comp].ds,
+					ventas:data_compra[ind_men_comp].ventas,
+					porcentaje:data_compra[ind_men_comp].porcentaje,
+					desde:data_compra[ind_men_comp].desde,
+					hasta:data_compra[ind_men_comp].hasta,
+					banco:data_compra[ind_men_comp].banco,
+					condicion:data_compra[ind_men_comp].condicion
+				};
+				bs_cp[h] = comprar[h].bs
+			}	
+			mx_cp = Math.max.apply(null, bs_cp);
+			id_mx_cp = bs_cp.indexOf(mx_cp);
+			max_compra_bs = comprar[id_mx_cp].bs;
+			max_compra_ds = comprar[id_mx_cp].ds;
+	/*----------------------------------------------------------------------------------------------------*/
+
+
+	    var x3 = amazonResponse.data;
 			//res.render('game', { 'x': x3 });
-			res.render('game', { 'x': x3, 'error': Object.keys(x3) });
+			sum=max_compra_bs/max_compra_ds;
+			res.render('game', { 'x': x3, 'dolar':x2, 'btc_bs':max_compra_bs,'btc_ds':max_compra_ds, 'btc':sum });
 		}))
 		.catch(function(err) {
 			res.render('game', { 'error': "recargue" });
@@ -396,24 +484,45 @@ app.get('/game', function(req, res){
 
 	dust.helpers.convertir = function (chunk, context, bodies, params) {
 	    var valor = dust.helpers.tap(params.valor, chunk, context);
+	    var dolar = dust.helpers.tap(params.dolar, chunk, context);
+
 	    inicio = valor.indexOf("$")+1;
 	    corte = valor.substring(inicio);
 	    fin = corte.indexOf("&");
 	    cadena = valor.substring(inicio,(inicio+fin));
-	    return cadena;
+	    return cadena*dolar;
 	};	
-
 
 	dust.helpers.convertir2 = function (chunk, context, bodies, params) {
 	    var valor = dust.helpers.tap(params.valor, chunk, context);
+	    var dolar = dust.helpers.tap(params.dolar, chunk, context);
 	    inicio = valor.indexOf("$")+1;
-//$34.49
-
 	    cadena = valor.substring(inicio);
-	    //fin = corte.indexOf("&");
-	    //cadena = valor.substring(inicio,(inicio+fin));
-	    return cadena;
+	    return cadena*dolar;
 	};	
+
+
+	dust.helpers.convertir_btc = function (chunk, context, bodies, params) {
+	    var valor = dust.helpers.tap(params.valor, chunk, context);
+	    var btc_ds = dust.helpers.tap(params.btc_ds, chunk, context);
+	    var btc = dust.helpers.tap(params.btc, chunk, context);
+
+	    inicio = valor.indexOf("$")+1;
+	    corte = valor.substring(inicio);
+	    fin = corte.indexOf("&");
+	    cadena = valor.substring(inicio,(inicio+fin));
+	    return (btc/btc_ds)*cadena;
+	};	
+
+	dust.helpers.convertir_btc2 = function (chunk, context, bodies, params) {
+	    var valor = dust.helpers.tap(params.valor, chunk, context);
+	    var btc_ds = dust.helpers.tap(params.btc_ds, chunk, context);
+	    var btc = dust.helpers.tap(params.btc, chunk, context);
+	    inicio = valor.indexOf("$")+1;
+	    cadena = valor.substring(inicio);
+	    return (btc/btc_ds)*cadena;
+	};	
+
 
 
 	function spanish(cad){
@@ -434,7 +543,7 @@ app.get('/csv', function(req, res){
 
 
 app.get('/frecuencia', function(req, res){
-	client.query("SELECT trim(to_char(valor,'99999999')) as y FROM tipo_a", function(err,result){
+	client.query("SELECT trim(to_char(valor,'99999999')) as y FROM medidas", function(err,result){
 		if (err) {
 			return console.error('error runing query',err);
 		};
