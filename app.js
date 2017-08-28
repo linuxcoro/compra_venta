@@ -45,6 +45,27 @@ app.get('/datos', function(req, res){
 	};	
 });
 
+<<<<<<< HEAD
+=======
+/*
+	var dolar = axios.get('http://api.bitcoinvenezuela.com/DolarToday.php?json=yes')
+	.then(function (dolarResponse) {
+		parseInt(dolarResponse.data.USD.dolartoday);
+	});			
+
+	var dolartoday = function (req, res, next) {
+		req.dolartoday=this.dolar;
+		next();
+	};
+	app.use(dolartoday);		
+
+*/
+
+
+
+
+
+>>>>>>> 434e6c6655e4994e25654703c8d43522d61f93ec
 
 app.get('/tabla', function(req, res){
 	/*----------------------------------------------------------------------------------------------------*/
@@ -116,7 +137,7 @@ app.get('/tabla', function(req, res){
 	/*----------------------------------------------------------------------------------------------------*/
 	/* COMPRA EN BOLIVARES VENEZUELA*/
 		    x1 = compraBtcResponse.data.data.ad_list;
-			x2 = parseInt(dolarResponse.data.USD.dolartoday);
+			this.x2 = parseInt(dolarResponse.data.USD.dolartoday);
 			for (var h=0; h < trato.length; h++) { 
 			    var j = 0;
 				for (var i=0; i < x1.length; i++) { 
@@ -466,8 +487,12 @@ app.get('/game', function(req, res){
 
 	    var x3 = amazonResponse.data;
 			//res.render('game', { 'x': x3 });
+<<<<<<< HEAD
 			sum=max_compra_bs/max_compra_ds;
 			res.render('game', { 'x': x3, 'dolar':x2, 'btc_bs':max_compra_bs,'btc_ds':max_compra_ds, 'btc':sum });
+=======
+			res.render('game', { 'x': x3});
+>>>>>>> 434e6c6655e4994e25654703c8d43522d61f93ec
 		}))
 		.catch(function(err) {
 			res.render('game', { 'error': "recargue" });
