@@ -11,12 +11,9 @@
 	{@traduce name="{priority}" /}<br>
 
 	{@gt key=new-price.length value="10"}
-		{@convertir valor="{new-price}"  dolar="{dolar}" /} precio dolar<br>
 		{@convertir_btc valor="{new-price}" btc_ds="{btc_ds}" btc="{btc_bs}" /} precio btc<br>
 	{:else}
-		{@convertir2 valor="{new-price}" dolar="{dolar}" /} predio dolar<br>
 		{@convertir_btc2 valor="{new-price}" btc_ds="{btc_ds}"  btc="{btc_bs}" /} predio btc<br>
 	{/gt}
 	<img src={picture}>
-	<img src={large-ssl-image}>
 {/x}
