@@ -1,10 +1,8 @@
 {>"layout" /}
-{error}<br>
 <div class="container">
   <!-- Example row of columns -->
   <div class="row">
-{#x}
-			
+{#x}			
     <div class="col-md-4">
       <h2>{@traduce name="{name}" /}</h2>
       <p>
