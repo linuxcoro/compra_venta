@@ -1,11 +1,7 @@
 {>"layout" /}
 {error}<br>
 {dolar} dolar<br>
-{btc} btc<br>
-{btc_bs} btc en bs<br>
-{btc_ds} btc en ds<br>
-
-
+{error}
 <div class="container">
   <!-- Example row of columns -->
   <div class="row">
