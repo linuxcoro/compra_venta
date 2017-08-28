@@ -483,10 +483,8 @@ app.get('/game', function(req, res){
 
 
 	    var x3 = amazonResponse.data;
-			//res.render('game', { 'x': x3 });
 			sum=max_compra_bs/max_compra_ds;
 			res.render('game', { 'x': x3, 'dolar':x2, 'btc_bs':max_compra_bs,'btc_ds':max_compra_ds, 'btc':sum });
-			//res.render('game', { 'x': x3});
 		}))
 		.catch(function(err) {
 			res.render('game', { 'error': "recargue" });

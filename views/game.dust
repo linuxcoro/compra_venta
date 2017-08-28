@@ -18,4 +18,5 @@
 		{@convertir_btc2 valor="{new-price}" btc_ds="{btc_ds}"  btc="{btc_bs}" /} predio btc<br>
 	{/gt}
 	<img src={picture}>
+	<img src={large-ssl-image}>
 {/x}
