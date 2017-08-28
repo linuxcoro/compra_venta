@@ -5,9 +5,9 @@
   <div class="row">
 {#x}			
     <div class="col-md-4">
-      <h2>{@traduce name="{name}" /}</h2>
+      <h3>{@traduce name="{name}" /}</h3>
       <p>
-      		<img src="{picture}">
+      		<img src="{picture}"><br>
 			{@traduce name="{date-added}" /}<br>
 			{@traduce name="{priority}" /}<br>
 
@@ -17,7 +17,7 @@
 				{@convertir_btc2 valor="{new-price}" btc_ds="{btc_ds}"  btc="{btc_bs}" /} precio btc<br>
 			{/gt}
       <p>
-      	<a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+      	<!--<a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>-->
     </div>
 
 {/x}
