@@ -63,7 +63,6 @@ app.get('/datos', function(req, res){
 
 
 
->>>>>>> 434e6c6655e4994e25654703c8d43522d61f93ec
 
 app.get('/tabla', function(req, res){
 	/*----------------------------------------------------------------------------------------------------*/
@@ -485,12 +484,9 @@ app.get('/game', function(req, res){
 
 	    var x3 = amazonResponse.data;
 			//res.render('game', { 'x': x3 });
-<<<<<<< HEAD
 			sum=max_compra_bs/max_compra_ds;
 			res.render('game', { 'x': x3, 'dolar':x2, 'btc_bs':max_compra_bs,'btc_ds':max_compra_ds, 'btc':sum });
-=======
-			res.render('game', { 'x': x3});
->>>>>>> 434e6c6655e4994e25654703c8d43522d61f93ec
+			//res.render('game', { 'x': x3});
 		}))
 		.catch(function(err) {
 			res.render('game', { 'error': "recargue" });
