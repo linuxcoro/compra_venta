@@ -242,10 +242,10 @@ app.get('/tabla', function(req, res){
 
 
 
+/*
 
-
-	/*----------------------------------------------------------------------------------------------------*/
-	/* COMPRA CON PAYONEER DOLARES O EUROS */
+	//----------------------------------------------------------------------------------------------------
+	// COMPRA CON PAYONEER DOLARES O EUROS 
 		    x4 = compraPayoneerResponse.data.data.ad_list;
 			//x2 = parseInt(dolarResponse.data.USD.dolartoday);
 			for (var h=0; h < trato.length; h++) { 
@@ -282,7 +282,7 @@ app.get('/tabla', function(req, res){
 			}	
 			com_pay.sort(function(a, b){return a['ds']-b['ds']});
 
-	/* VENTA CON PAYONEER DOLARES O EUROS */
+	// VENTA CON PAYONEER DOLARES O EUROS
 		    x5 = ventaPayoneerResponse.data.data.ad_list;
 			for (var h=0; h < trato.length; h++) { 
 			    var j = 0;
@@ -312,8 +312,8 @@ app.get('/tabla', function(req, res){
 
 
 
-	/*----------------------------------------------------------------------------------------------------*/
-	/* COMPRA CON NETELLER DOLARES O EUROS */
+	//----------------------------------------------------------------------------------------------------
+	// COMPRA CON NETELLER DOLARES O EUROS 
 
 
 		    x6 = compraNetellerResponse.data.data.ad_list;
@@ -353,7 +353,7 @@ app.get('/tabla', function(req, res){
 			}	
 			com_net.sort(function(a, b){return a['bs']-b['bs']});
 
-	/* VENTA CON NETELLER DOLARES O EUROS */
+	// VENTA CON NETELLER DOLARES O EUROS 
 		    x7 = ventaNetellerResponse.data.data.ad_list;
 			for (var h=0; h < trato.length; h++) { 
 			    var j = 0;
@@ -382,8 +382,8 @@ app.get('/tabla', function(req, res){
 				};
 			}	
 			tra_net.sort(function(a, b){return b['bs']-a['bs']});
-
-	/*----------------------------------------------------------------------------------------------------*/
+*/
+	//----------------------------------------------------------------------------------------------------
 
 			//res.render('tabla', { 'comprar': comprar,'venta': transa, 'dolar': x2, 'com_pay': com_pay, 'tra_pay': tra_pay, 'com_net': com_net, 'tra_pay': tra_net });
 			res.render('tabla', { 'comprar': comprar,'venta': transa, 'com_pay': com_pay, 'tra_pay': tra_pay, 'com_net': com_net, 'tra_pay': tra_net });
