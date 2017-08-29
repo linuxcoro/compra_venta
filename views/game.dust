@@ -4,7 +4,7 @@
   <!-- Example row of columns -->
 {#x}			
   <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-12">
       <h3>{@traduce name="{name}" /}</h3>
       <p>
       		<img src="{picture}"><br>
