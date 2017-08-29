@@ -421,8 +421,8 @@ app.get('/game', function(req, res){
 	    return axios.get('https://localbitcoins.com/buy-bitcoins-online/VEF/.json')
 	}
 
-	function getCompraPayoneer() {
-	    return axios.get('https://localbitcoins.com/buy-bitcoins-online/payoneer/.json')
+	function getVentaPayoneer() {
+	    return axios.get('https://localbitcoins.com/sell-bitcoins-online/payoneer/.json')
 	}
 
 /*
@@ -430,7 +430,7 @@ app.get('/game', function(req, res){
 		.then(axios.spread(function (amazonResponse,compraBtcResponse,dolarResponse) {
 */
 	axios.all([getAmazon(),getCompraBtc(), getCompraPayoneer()])
-		.then(axios.spread(function (amazonResponse,compraBtcResponse,compraPayoneerResponse) {
+		.then(axios.spread(function (amazonResponse,compraBtcResponse,ventaPayoneerResponse) {
 
 
 	//----------------------------------------------------------------------------------------------------
@@ -497,7 +497,7 @@ app.get('/game', function(req, res){
 			max_compra_bs = comprar[id_mx_cp].bs;
 	//----------------------------------------------------------------------------------------------------
 	// COMPRA CON PAYONEER DOLARES O EUROS 	
-		    x4 = compraPayoneerResponse.data.data.ad_list;
+		    x4 = ventaPayoneerResponse.data.data.ad_list;
 			for (var h=0; h < trato.length; h++) { 
 			    var j = 0;
 				for (var i=0; i < x4.length; i++) { 
