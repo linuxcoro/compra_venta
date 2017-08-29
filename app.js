@@ -425,10 +425,6 @@ app.get('/game', function(req, res){
 	    return axios.get('https://localbitcoins.com/sell-bitcoins-online/payoneer/.json')
 	}
 
-/*
-	axios.all([getAmazon(),getCompraBtc(),getDolar()])
-		.then(axios.spread(function (amazonResponse,compraBtcResponse,dolarResponse) {
-*/
 	axios.all([getAmazon(),getCompraBtc(), getVentaPayoneer()])
 		.then(axios.spread(function (amazonResponse,compraBtcResponse,ventaPayoneerResponse) {
 
@@ -446,7 +442,6 @@ app.get('/game', function(req, res){
 							data_compra[j] = {
 								vendedor:x1[i].data.profile.username,				
 								bs:parseInt(x1[i].data.temp_price),
-								//ds:parseInt(x1[i].data.temp_price/x2),
 								ventas:x1[i].data.profile.trade_count,
 								porcentaje:x1[i].data.profile.feedback_score,
 								desde:x1[i].data.min_amount,
@@ -478,7 +473,7 @@ app.get('/game', function(req, res){
 
 					};
 				}
-				men_comp = Math.max.apply(null, busca_compra);
+				men_comp = Math.min.apply(null, busca_compra);
 				ind_men_comp = busca_compra.indexOf(men_comp);
 				comprar[h] = {
 					vendedor:data_compra[ind_men_comp].vendedor,				
@@ -492,7 +487,7 @@ app.get('/game', function(req, res){
 				};
 				bs_cp[h] = comprar[h].bs
 			}	
-			mx_cp = Math.max.apply(null, bs_cp);
+			mx_cp = Math.min.apply(null, bs_cp);
 			id_mx_cp = bs_cp.indexOf(mx_cp);
 			max_compra_bs = comprar[id_mx_cp].bs;
 	//----------------------------------------------------------------------------------------------------
@@ -517,7 +512,7 @@ app.get('/game', function(req, res){
 						j++;
 					}
 				}
-				men_comp = Math.max.apply(null, bus_com_pay);
+				men_comp = Math.min.apply(null, bus_com_pay);
 				ind_men_comp = bus_com_pay.indexOf(men_comp);
 				com_pay[h] = {
 					vendedor:dat_com_pay[ind_men_comp].vendedor,				
@@ -532,7 +527,7 @@ app.get('/game', function(req, res){
 				bs_py[h] = com_pay[h].ds
 			}
 			
-			mx_py = Math.max.apply(null, bs_py);
+			mx_py = Math.min.apply(null, bs_py);
 			id_mx_py = bs_py.indexOf(mx_py);
 			mx_cp_py = com_pay[id_mx_py].ds;
 
