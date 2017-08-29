@@ -429,7 +429,7 @@ app.get('/game', function(req, res){
 	axios.all([getAmazon(),getCompraBtc(),getDolar()])
 		.then(axios.spread(function (amazonResponse,compraBtcResponse,dolarResponse) {
 */
-	axios.all([getAmazon(),getCompraBtc(), getCompraPayoneer()])
+	axios.all([getAmazon(),getCompraBtc(), getVentaPayoneer()])
 		.then(axios.spread(function (amazonResponse,compraBtcResponse,ventaPayoneerResponse) {
 
 
