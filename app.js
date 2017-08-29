@@ -528,7 +528,7 @@ app.get('/game', function(req, res){
 					banco:dat_com_pay[ind_men_comp].banco,
 					condicion:dat_com_pay[ind_men_comp].condicion
 				};
-				bs_py[h] = com_pay[h].bs				
+				bs_py[h] = com_pay[h].ds
 			}	
 			mx_py = Math.max.apply(null, bs_py);
 			id_mx_py = bs_cp.indexOf(mx_py);
