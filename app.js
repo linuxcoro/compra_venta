@@ -65,40 +65,40 @@ app.get('/datos', function(req, res){
 
 
 app.get('/tabla', function(req, res){
-	/*----------------------------------------------------------------------------------------------------*/
-	/* COMPRA BOLIVARES VENEZUELA */
+	//----------------------------------------------------------------------------------------------------
+	// COMPRA BOLIVARES VENEZUELA 
 	var data_compra = new Array();
 	var busca_compra = new Array();
 	var comprar = new Array();
 
-	/* VENTA BOLIVARES VENEZUELA */
+	// VENTA BOLIVARES VENEZUELA
 	var data_venta = new Array();
 	var busca_venta = new Array();
 	var transa = new Array();
 
-	/*----------------------------------------------------------------------------------------------------*/
-	/* COMPRA PAYONEER */
+	//----------------------------------------------------------------------------------------------------
+	// COMPRA PAYONEER
 	var dat_com_pay = new Array();
 	var bus_com_pay = new Array();
 	var com_pay = new Array();
 
-	/* VENTA PAYONEER */
+	// VENTA PAYONEER
 	var dat_ven_pay = new Array();
 	var bus_ven_pay = new Array();
 	var tra_pay = new Array();
 
-	/*----------------------------------------------------------------------------------------------------*/
-	/* COMPRA NETELLER */
+	//----------------------------------------------------------------------------------------------------
+	// COMPRA NETELLER
 	var dat_com_net = new Array();
 	var bus_com_net = new Array();
 	var com_net = new Array();
 
-	/* VENTA NETELLER */
+	// VENTA NETELLER
 	var dat_ven_net = new Array();
 	var bus_ven_net = new Array();
 	var tra_net = new Array();
 
-	/*----------------------------------------------------------------------------------------------------*/
+	//----------------------------------------------------------------------------------------------------
 
 	var trato = [100,100,500,1000,3000];
 	function getCompraBtc() {
@@ -396,13 +396,21 @@ app.get('/tabla', function(req, res){
 
 
 app.get('/game', function(req, res){
-	/*----------------------------------------------------------------------------------------------------*/
-	/* COMPRA BOLIVARES VENEZUELA */
+	//----------------------------------------------------------------------------------------------------
+	// COMPRA BOLIVARES VENEZUELA
 	var data_compra = new Array();
 	var busca_compra = new Array();
 	var comprar = new Array();
 	var bs_cp = new Array();
-	/*----------------------------------------------------------------------------------------------------*/
+
+	//----------------------------------------------------------------------------------------------------
+	// COMPRA PAYONEER
+	var dat_com_pay = new Array();
+	var bus_com_pay = new Array();
+	var com_pay = new Array();
+
+	//----------------------------------------------------------------------------------------------------
+
 	function getAmazon() {
 	    return axios.get('http://json.linuxcoro.com.ve/api/src/wishlist.php?id=1A7GB9IL1UAK2&format=json')
 	}
@@ -411,22 +419,21 @@ app.get('/game', function(req, res){
 	function getCompraBtc() {
 	    return axios.get('https://localbitcoins.com/buy-bitcoins-online/VEF/.json')
 	}
-/*
-	function getDolar() {
-	    return axios.get('http://api.bitcoinvenezuela.com/DolarToday.php?json=yes')
+
+	function getCompraPayoneer() {
+	    return axios.get('https://localbitcoins.com/buy-bitcoins-online/payoneer/.json')
 	}
-*/
+
 /*
 	axios.all([getAmazon(),getCompraBtc(),getDolar()])
 		.then(axios.spread(function (amazonResponse,compraBtcResponse,dolarResponse) {
 */
 	axios.all([getAmazon(),getCompraBtc()])
-		.then(axios.spread(function (amazonResponse,compraBtcResponse) {
+		.then(axios.spread(function (amazonResponse,compraBtcResponse,compraPayoneerResponse) {
 
-		//var x2 = parseInt(dolarResponse.data.USD.dolartoday);
 
-	/*----------------------------------------------------------------------------------------------------*/
-	/* COMPRA EN BOLIVARES VENEZUELA*/
+	//----------------------------------------------------------------------------------------------------
+	// COMPRA EN BOLIVARES VENEZUELA*/
 		    x1 = compraBtcResponse.data.data.ad_list;
 			for (var h=0; h < trato.length; h++) { 
 			    var j = 0;
@@ -457,7 +464,6 @@ app.get('/game', function(req, res){
 							data_compra[j] = {
 								vendedor:x1[i].data.profile.username,				
 								bs:parseInt(x1[i].data.temp_price),
-								//ds:parseInt(x1[i].data.temp_price/x2),
 								ventas:x1[i].data.profile.trade_count,
 								porcentaje:x1[i].data.profile.feedback_score,
 								desde:x1[i].data.min_amount,
@@ -476,7 +482,6 @@ app.get('/game', function(req, res){
 				comprar[h] = {
 					vendedor:data_compra[ind_men_comp].vendedor,				
 					bs:data_compra[ind_men_comp].bs,
-					//ds:data_compra[ind_men_comp].ds,
 					ventas:data_compra[ind_men_comp].ventas,
 					porcentaje:data_compra[ind_men_comp].porcentaje,
 					desde:data_compra[ind_men_comp].desde,
@@ -489,13 +494,53 @@ app.get('/game', function(req, res){
 			mx_cp = Math.max.apply(null, bs_cp);
 			id_mx_cp = bs_cp.indexOf(mx_cp);
 			max_compra_bs = comprar[id_mx_cp].bs;
-			//max_compra_ds = comprar[id_mx_cp].ds;
-	/*----------------------------------------------------------------------------------------------------*/
+	//----------------------------------------------------------------------------------------------------
+	// COMPRA CON PAYONEER DOLARES O EUROS 
+		    x4 = compraPayoneerResponse.data.data.ad_list;
+			for (var h=0; h < trato.length; h++) { 
+			    var j = 0;
+				for (var i=0; i < x4.length; i++) { 
+					clientes=parseInt(x4[i].data.profile.trade_count);
+					if (clientes==trato[h]) {
+						dat_com_pay[j] = {
+							vendedor:x4[i].data.profile.username,				
+							ds:parseInt(x4[i].data.temp_price),
+							ventas:x4[i].data.profile.trade_count,
+							porcentaje:x4[i].data.profile.feedback_score,
+							desde:x4[i].data.min_amount,
+							hasta:x4[i].data.max_amount,
+							banco:x4[i].data.bank_name,
+							condicion:(x4[i].data.require_trade_volume>0)?"Si":"No"							
+						};
+						bus_com_pay[j]=dat_com_pay[j].ds
+						j++;
+					}
+				}
+				men_comp = Math.min.apply(null, bus_com_pay);
+				ind_men_comp = bus_com_pay.indexOf(men_comp);
+				com_pay[h] = {
+					vendedor:dat_com_pay[ind_men_comp].vendedor,				
+					ds:dat_com_pay[ind_men_comp].ds,
+					ventas:dat_com_pay[ind_men_comp].ventas,
+					porcentaje:dat_com_pay[ind_men_comp].porcentaje,
+					desde:dat_com_pay[ind_men_comp].desde,
+					hasta:dat_com_pay[ind_men_comp].hasta,
+					banco:dat_com_pay[ind_men_comp].banco,
+					condicion:dat_com_pay[ind_men_comp].condicion
+				};
+				bs_py[h] = com_pay[h].bs				
+			}	
+			mx_py = Math.max.apply(null, bs_py);
+			id_mx_py = bs_cp.indexOf(mx_py);
+			mx_cp_py = comprar[id_mx_py].ds;
 
+
+
+	//----------------------------------------------------------------------------------------------------
 
 	    var x3 = amazonResponse.data;
 			//res.render('game', { 'x': x3, 'dolar':x2, 'btc_bs':max_compra_bs,'btc_ds':max_compra_ds, 'btc':sum });
-			res.render('game', { 'x': x3, 'btc_bs':max_compra_bs });
+			res.render('game', { 'x': x3, 'btc_bs':max_compra_bs, 'btc_ds':mx_cp_py });
 		}))
 		.catch(function(err) {
 			res.render('game', { 'error': "recargue" });

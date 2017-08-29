@@ -1,5 +1,7 @@
 {>"layout" /}
 {error}<br>
+{btc_ds}<br>
+
 <div class="container">
   <!-- Example row of columns -->
 {#x}			
