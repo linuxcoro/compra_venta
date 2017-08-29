@@ -589,7 +589,7 @@ app.get('/game', function(req, res){
 	    corte = valor.substring(inicio);
 	    fin = corte.indexOf("&");
 	    cadena = valor.substring(inicio,(inicio+fin));
-	    return cadena/btc_ds;
+	    return (cadena/btc_ds)*btc;
 	};
 
 	dust.helpers.convertir_btc2 = function (chunk, context, bodies, params) {
@@ -598,7 +598,7 @@ app.get('/game', function(req, res){
 	    var btc_ds = dust.helpers.tap(params.btc_ds, chunk, context);
 	    inicio = valor.indexOf("$")+1;
 	    cadena = valor.substring(inicio);
-	    return cadena/btc_ds;
+	    return (cadena/btc_ds)*btc;
 	};	
 
 
