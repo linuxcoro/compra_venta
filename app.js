@@ -385,7 +385,8 @@ app.get('/tabla', function(req, res){
 
 	/*----------------------------------------------------------------------------------------------------*/
 
-			res.render('tabla', { 'comprar': comprar,'venta': transa, 'dolar': x2, 'com_pay': com_pay, 'tra_pay': tra_pay, 'com_net': com_net, 'tra_pay': tra_net });
+			//res.render('tabla', { 'comprar': comprar,'venta': transa, 'dolar': x2, 'com_pay': com_pay, 'tra_pay': tra_pay, 'com_net': com_net, 'tra_pay': tra_net });
+			res.render('tabla', { 'comprar': comprar,'venta': transa, 'com_pay': com_pay, 'tra_pay': tra_pay, 'com_net': com_net, 'tra_pay': tra_net });
 		}));
 });
 
