@@ -1,13 +1,9 @@
-
-
-
 		<h3>Comprar tus BTC localbitcoins</h3>
 		Precio del dolar: {dolar}
 		<table>
 		<tr style="background: #E0E6F8">
 			<td>Vendedor</td>
 			<td>Bolivar</td>
-			<td>Dolar</td>
 			<td>Ventas</td>
 			<td>Confianza</td>
 			<td>Rango de Compras</td>
@@ -18,7 +14,6 @@
 		<tr style="background: {cycle values='#E0F8F7, #FAFAFA'}">
 			<td>{vendedor}</td>
 			<td>{bs} Bs</td>
-			<td>{ds} $</td>
 			<td>{ventas}</td>
 			<td>{porcentaje}%</td>
 			<td>{desde}-{hasta}</td>
@@ -42,7 +37,6 @@
 		<tr style="background: #E0E6F8">
 			<td>Vendedor</td>
 			<td>Bolivar</td>
-			<td>Dolar</td>
 			<td>Ventas</td>
 			<td>Confianza</td>
 		</tr>	
@@ -50,7 +44,6 @@
 		<tr style="background: {cycle values='#E0F8F7, #FAFAFA'}">
 			<td>{vendedor}</td>
 			<td>{bs} Bs</td>
-			<td>{ds} $</td>
 			<td>{ventas}</td>
 			<td>{porcentaje}%</td>
 		</tr>	

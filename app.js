@@ -124,17 +124,23 @@ app.get('/tabla', function(req, res){
 	    return axios.get('https://localbitcoins.com/sell-bitcoins-online/neteller/.json')
 	}
 
+/*
 	function getDolar() {
 	    return axios.get('http://api.bitcoinvenezuela.com/DolarToday.php?json=yes')
 	}
+*/
 
+/*
 	axios.all([getCompraBtc(),getVentaBtc(),getCompraPayoneer(),getVentaPayoneer(),getCompraNeteller(),getVentaNeteller(),getDolar()])
 		.then(axios.spread(function (compraBtcResponse,ventaBtcResponse,compraPayoneerResponse,ventaPayoneerResponse,compraNetellerResponse,ventaNetellerResponse, dolarResponse) {
+*/
+	axios.all([getCompraBtc(),getVentaBtc(),getCompraPayoneer(),getVentaPayoneer(),getCompraNeteller(),getVentaNeteller()])
+		.then(axios.spread(function (compraBtcResponse,ventaBtcResponse,compraPayoneerResponse,ventaPayoneerResponse,compraNetellerResponse,ventaNetellerResponse) {
 
 	/*----------------------------------------------------------------------------------------------------*/
 	/* COMPRA EN BOLIVARES VENEZUELA*/
 		    x1 = compraBtcResponse.data.data.ad_list;
-			this.x2 = parseInt(dolarResponse.data.USD.dolartoday);
+			//this.x2 = parseInt(dolarResponse.data.USD.dolartoday);
 			for (var h=0; h < trato.length; h++) { 
 			    var j = 0;
 				for (var i=0; i < x1.length; i++) { 
@@ -145,7 +151,7 @@ app.get('/tabla', function(req, res){
 							data_compra[j] = {
 								vendedor:x1[i].data.profile.username,				
 								bs:parseInt(x1[i].data.temp_price),
-								ds:parseInt(x1[i].data.temp_price/x2),
+								//ds:parseInt(x1[i].data.temp_price/x2),
 								ventas:x1[i].data.profile.trade_count,
 								porcentaje:x1[i].data.profile.feedback_score,
 								desde:x1[i].data.min_amount,
@@ -165,7 +171,7 @@ app.get('/tabla', function(req, res){
 							data_compra[j] = {
 								vendedor:x1[i].data.profile.username,				
 								bs:parseInt(x1[i].data.temp_price),
-								ds:parseInt(x1[i].data.temp_price/x2),
+								//ds:parseInt(x1[i].data.temp_price/x2),
 								ventas:x1[i].data.profile.trade_count,
 								porcentaje:x1[i].data.profile.feedback_score,
 								desde:x1[i].data.min_amount,
@@ -189,7 +195,7 @@ app.get('/tabla', function(req, res){
 				comprar[h] = {
 					vendedor:data_compra[ind_men_comp].vendedor,				
 					bs:data_compra[ind_men_comp].bs,
-					ds:data_compra[ind_men_comp].ds,
+					//ds:data_compra[ind_men_comp].ds,
 					ventas:data_compra[ind_men_comp].ventas,
 					porcentaje:data_compra[ind_men_comp].porcentaje,
 					desde:data_compra[ind_men_comp].desde,
@@ -211,7 +217,7 @@ app.get('/tabla', function(req, res){
 						data_venta[j] = {
 							vendedor:x3[i].data.profile.username,				
 							bs:parseInt(x3[i].data.temp_price),
-							ds:parseInt(x3[i].data.temp_price/x2),
+							//ds:parseInt(x3[i].data.temp_price/x2),
 							ventas:x3[i].data.profile.trade_count,
 							porcentaje:x3[i].data.profile.feedback_score
 						};
@@ -224,7 +230,7 @@ app.get('/tabla', function(req, res){
 				transa[h] = {
 					vendedor:data_venta[ind_men_comp].vendedor,				
 					bs:data_venta[ind_men_comp].bs,
-					ds:data_venta[ind_men_comp].ds,
+					//ds:data_venta[ind_men_comp].ds,
 					ventas:data_venta[ind_men_comp].ventas,
 					porcentaje:data_venta[ind_men_comp].porcentaje
 				};
@@ -530,7 +536,7 @@ app.get('/game', function(req, res){
 	    fin = corte.indexOf("&");
 	    cadena = valor.substring(inicio,(inicio+fin));
 	    return cadena;
-	};	
+	};
 
 	dust.helpers.convertir_btc2 = function (chunk, context, bodies, params) {
 	    var valor = dust.helpers.tap(params.valor, chunk, context);
