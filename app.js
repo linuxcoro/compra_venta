@@ -404,14 +404,19 @@ app.get('/game', function(req, res){
 	function getCompraBtc() {
 	    return axios.get('https://localbitcoins.com/buy-bitcoins-online/VEF/.json')
 	}
-
+/*
 	function getDolar() {
 	    return axios.get('http://api.bitcoinvenezuela.com/DolarToday.php?json=yes')
 	}
-
+*/
+/*
 	axios.all([getAmazon(),getCompraBtc(),getDolar()])
 		.then(axios.spread(function (amazonResponse,compraBtcResponse,dolarResponse) {
-		var x2 = parseInt(dolarResponse.data.USD.dolartoday);
+*/
+	axios.all([getAmazon(),getCompraBtc()])
+		.then(axios.spread(function (amazonResponse,compraBtcResponse) {
+
+		//var x2 = parseInt(dolarResponse.data.USD.dolartoday);
 
 	/*----------------------------------------------------------------------------------------------------*/
 	/* COMPRA EN BOLIVARES VENEZUELA*/
@@ -426,7 +431,7 @@ app.get('/game', function(req, res){
 							data_compra[j] = {
 								vendedor:x1[i].data.profile.username,				
 								bs:parseInt(x1[i].data.temp_price),
-								ds:parseInt(x1[i].data.temp_price/x2),
+								//ds:parseInt(x1[i].data.temp_price/x2),
 								ventas:x1[i].data.profile.trade_count,
 								porcentaje:x1[i].data.profile.feedback_score,
 								desde:x1[i].data.min_amount,
@@ -441,12 +446,11 @@ app.get('/game', function(req, res){
 					}
 					else{
 
-
 						if (clientes==trato[h]) {
 							data_compra[j] = {
 								vendedor:x1[i].data.profile.username,				
 								bs:parseInt(x1[i].data.temp_price),
-								ds:parseInt(x1[i].data.temp_price/x2),
+								//ds:parseInt(x1[i].data.temp_price/x2),
 								ventas:x1[i].data.profile.trade_count,
 								porcentaje:x1[i].data.profile.feedback_score,
 								desde:x1[i].data.min_amount,
@@ -465,7 +469,7 @@ app.get('/game', function(req, res){
 				comprar[h] = {
 					vendedor:data_compra[ind_men_comp].vendedor,				
 					bs:data_compra[ind_men_comp].bs,
-					ds:data_compra[ind_men_comp].ds,
+					//ds:data_compra[ind_men_comp].ds,
 					ventas:data_compra[ind_men_comp].ventas,
 					porcentaje:data_compra[ind_men_comp].porcentaje,
 					desde:data_compra[ind_men_comp].desde,
@@ -478,13 +482,13 @@ app.get('/game', function(req, res){
 			mx_cp = Math.max.apply(null, bs_cp);
 			id_mx_cp = bs_cp.indexOf(mx_cp);
 			max_compra_bs = comprar[id_mx_cp].bs;
-			max_compra_ds = comprar[id_mx_cp].ds;
+			//max_compra_ds = comprar[id_mx_cp].ds;
 	/*----------------------------------------------------------------------------------------------------*/
 
 
 	    var x3 = amazonResponse.data;
-			sum=max_compra_bs/max_compra_ds;
-			res.render('game', { 'x': x3, 'dolar':x2, 'btc_bs':max_compra_bs,'btc_ds':max_compra_ds, 'btc':sum });
+			//res.render('game', { 'x': x3, 'dolar':x2, 'btc_bs':max_compra_bs,'btc_ds':max_compra_ds, 'btc':sum });
+			res.render('game', { 'x': x3, 'btc_bs':max_compra_bs });
 		}))
 		.catch(function(err) {
 			res.render('game', { 'error': "recargue" });
@@ -501,43 +505,39 @@ app.get('/game', function(req, res){
 
 	dust.helpers.convertir = function (chunk, context, bodies, params) {
 	    var valor = dust.helpers.tap(params.valor, chunk, context);
-	    var dolar = dust.helpers.tap(params.dolar, chunk, context);
 
 	    inicio = valor.indexOf("$")+1;
 	    corte = valor.substring(inicio);
 	    fin = corte.indexOf("&");
 	    cadena = valor.substring(inicio,(inicio+fin));
-	    return cadena*dolar;
+	    return cadena;
 	};	
 
 	dust.helpers.convertir2 = function (chunk, context, bodies, params) {
 	    var valor = dust.helpers.tap(params.valor, chunk, context);
-	    var dolar = dust.helpers.tap(params.dolar, chunk, context);
 	    inicio = valor.indexOf("$")+1;
 	    cadena = valor.substring(inicio);
-	    return cadena*dolar;
+	    return cadena;
 	};	
 
 
 	dust.helpers.convertir_btc = function (chunk, context, bodies, params) {
 	    var valor = dust.helpers.tap(params.valor, chunk, context);
-	    var btc_ds = dust.helpers.tap(params.btc_ds, chunk, context);
 	    var btc = dust.helpers.tap(params.btc, chunk, context);
 
 	    inicio = valor.indexOf("$")+1;
 	    corte = valor.substring(inicio);
 	    fin = corte.indexOf("&");
 	    cadena = valor.substring(inicio,(inicio+fin));
-	    return (btc/btc_ds)*cadena;
+	    return cadena;
 	};	
 
 	dust.helpers.convertir_btc2 = function (chunk, context, bodies, params) {
 	    var valor = dust.helpers.tap(params.valor, chunk, context);
-	    var btc_ds = dust.helpers.tap(params.btc_ds, chunk, context);
 	    var btc = dust.helpers.tap(params.btc, chunk, context);
 	    inicio = valor.indexOf("$")+1;
 	    cadena = valor.substring(inicio);
-	    return (btc/btc_ds)*cadena;
+	    return cadena;
 	};	
 
 
