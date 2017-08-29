@@ -496,6 +496,7 @@ app.get('/game', function(req, res){
 			max_compra_bs = comprar[id_mx_cp].bs;
 	//----------------------------------------------------------------------------------------------------
 	// COMPRA CON PAYONEER DOLARES O EUROS 
+/*	
 		    x4 = compraPayoneerResponse.data.data.ad_list;
 			for (var h=0; h < trato.length; h++) { 
 			    var j = 0;
@@ -533,7 +534,7 @@ app.get('/game', function(req, res){
 			mx_py = Math.max.apply(null, bs_py);
 			id_mx_py = bs_cp.indexOf(mx_py);
 			mx_cp_py = com_pay[id_mx_py].ds;
-
+*/
 
 
 	//----------------------------------------------------------------------------------------------------
