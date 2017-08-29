@@ -402,13 +402,13 @@ app.get('/game', function(req, res){
 	var busca_compra = new Array();
 	var comprar = new Array();
 	var bs_cp = new Array();
-	var bs_py = new Array();
 
 	//----------------------------------------------------------------------------------------------------
 	// COMPRA PAYONEER
 	var dat_com_pay = new Array();
 	var bus_com_pay = new Array();
 	var com_pay = new Array();
+	var bs_py = new Array();
 
 	//----------------------------------------------------------------------------------------------------
 
@@ -533,7 +533,7 @@ app.get('/game', function(req, res){
 			}
 			
 			mx_py = Math.max.apply(null, bs_py);
-			id_mx_py = bs_cp.indexOf(mx_py);
+			id_mx_py = bs_py.indexOf(mx_py);
 			mx_cp_py = com_pay[id_mx_py].ds;
 
 
