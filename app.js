@@ -532,7 +532,7 @@ app.get('/game', function(req, res){
 			}	
 			mx_py = Math.max.apply(null, bs_py);
 			id_mx_py = bs_cp.indexOf(mx_py);
-			mx_cp_py = comprar[id_mx_py].ds;
+			mx_cp_py = com_pay[id_mx_py].ds;
 
 
 
