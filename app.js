@@ -542,7 +542,7 @@ app.get('/game', function(req, res){
 	    var x3 = amazonResponse.data;
 			//res.render('game', { 'x': x3, 'dolar':x2, 'btc_bs':max_compra_bs,'btc_ds':max_compra_ds, 'btc':sum });
 			//res.render('game', { 'x': x3, 'btc_bs':max_compra_bs, 'btc_ds':mx_cp_py });
-			res.render('game', { 'x': x3, 'btc_bs':max_compra_bs, 'error': mx_cp_py });
+			res.render('game', { 'x': x3, 'btc_bs':max_compra_bs, 'btc_ds': mx_cp_py });
 		}))
 		.catch(function(err) {
 			res.render('game', { 'error': "recargue" });
@@ -557,41 +557,25 @@ app.get('/game', function(req, res){
 	};	
 
 
-	dust.helpers.convertir = function (chunk, context, bodies, params) {
-	    var valor = dust.helpers.tap(params.valor, chunk, context);
-
-	    inicio = valor.indexOf("$")+1;
-	    corte = valor.substring(inicio);
-	    fin = corte.indexOf("&");
-	    cadena = valor.substring(inicio,(inicio+fin));
-	    return cadena;
-	};	
-
-	dust.helpers.convertir2 = function (chunk, context, bodies, params) {
-	    var valor = dust.helpers.tap(params.valor, chunk, context);
-	    inicio = valor.indexOf("$")+1;
-	    cadena = valor.substring(inicio);
-	    return cadena;
-	};	
-
-
 	dust.helpers.convertir_btc = function (chunk, context, bodies, params) {
 	    var valor = dust.helpers.tap(params.valor, chunk, context);
 	    var btc = dust.helpers.tap(params.btc, chunk, context);
+	    var btc_ds = dust.helpers.tap(params.btc_ds, chunk, context);
 
 	    inicio = valor.indexOf("$")+1;
 	    corte = valor.substring(inicio);
 	    fin = corte.indexOf("&");
 	    cadena = valor.substring(inicio,(inicio+fin));
-	    return cadena;
+	    return cadena/btc_ds;
 	};
 
 	dust.helpers.convertir_btc2 = function (chunk, context, bodies, params) {
 	    var valor = dust.helpers.tap(params.valor, chunk, context);
 	    var btc = dust.helpers.tap(params.btc, chunk, context);
+	    var btc_ds = dust.helpers.tap(params.btc_ds, chunk, context);
 	    inicio = valor.indexOf("$")+1;
 	    cadena = valor.substring(inicio);
-	    return cadena;
+	    return cadena/btc_ds;
 	};	
 
 
