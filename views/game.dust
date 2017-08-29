@@ -14,10 +14,12 @@
 
 			{@gt key=new-price.length value="10"}
         {@convertir valor="{new-price}" btc="{btc_bs}" /} dolares<br>
-        {@convertir_btc valor="{new-price}" btc="{btc_bs}"  btc_ds="{btc_ds}" /} dolares<br>
+        {@convertir_btc valor="{new-price}" btc="{btc_bs}"  btc_ds="{btc_ds}" /} bitcoin<br>
+        {btc_ds} Precio bitcoin<br>
 			{:else}
         {@convertir2 valor="{new-price}" btc="{btc_bs}" btc_ds="{btc_ds}" /} dolares<br>
-        {@convertir_btc2 valor="{new-price}" btc="{btc_bs}" btc_ds="{btc_ds}" btc_ds="{btc_ds}" /} dolares<br>
+        {@convertir_btc2 valor="{new-price}" btc="{btc_bs}" btc_ds="{btc_ds}" btc_ds="{btc_ds}" /} bitcoin<br>
+        {btc_ds} Precio bitcoin<br>
 			{/gt}
       <p>
       	<!--<a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>-->
