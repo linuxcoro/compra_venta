@@ -13,11 +13,11 @@
 			{@traduce name="{priority}" /}<br>
 
 			{@gt key=new-price.length value="10"}
-				{@convertir_btc valor="{new-price}" btc="{btc_bs}" btc_ds="{btc_ds}" /} btc<br>
-        {new-price} dolares
+        {@convertir valor="{new-price}" btc="{btc_bs}" /} dolares<br>
+        {@convertir_btc valor="{new-price}" btc="{btc_bs}"  btc_ds="{btc_ds}" /} dolares<br>
 			{:else}
-				{@convertir_btc2 valor="{new-price}" btc="{btc_bs}" btc_ds="{btc_ds}"/} btc<br>
-        {new-price} dolares
+        {@convertir2 valor="{new-price}" btc="{btc_bs}" btc_ds="{btc_ds}" /} dolares<br>
+        {@convertir_btc2 valor="{new-price}" btc="{btc_bs}" btc_ds="{btc_ds}" btc_ds="{btc_ds}" /} dolares<br>
 			{/gt}
       <p>
       	<!--<a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>-->
