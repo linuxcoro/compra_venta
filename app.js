@@ -402,6 +402,7 @@ app.get('/game', function(req, res){
 	var busca_compra = new Array();
 	var comprar = new Array();
 	var bs_cp = new Array();
+	var bs_py = new Array();
 
 	//----------------------------------------------------------------------------------------------------
 	// COMPRA PAYONEER
@@ -516,7 +517,7 @@ app.get('/game', function(req, res){
 						j++;
 					}
 				}
-				men_comp = Math.min.apply(null, bus_com_pay);
+				men_comp = Math.max.apply(null, bus_com_pay);
 				ind_men_comp = bus_com_pay.indexOf(men_comp);
 				com_pay[h] = {
 					vendedor:dat_com_pay[ind_men_comp].vendedor,				
@@ -528,13 +529,12 @@ app.get('/game', function(req, res){
 					banco:dat_com_pay[ind_men_comp].banco,
 					condicion:dat_com_pay[ind_men_comp].condicion
 				};
-				//bs_py[h] = com_pay[h].ds
+				bs_py[h] = com_pay[h].ds
 			}
-/*			
+			
 			mx_py = Math.max.apply(null, bs_py);
 			id_mx_py = bs_cp.indexOf(mx_py);
 			mx_cp_py = com_pay[id_mx_py].ds;
-*/
 
 
 	//----------------------------------------------------------------------------------------------------
@@ -542,7 +542,7 @@ app.get('/game', function(req, res){
 	    var x3 = amazonResponse.data;
 			//res.render('game', { 'x': x3, 'dolar':x2, 'btc_bs':max_compra_bs,'btc_ds':max_compra_ds, 'btc':sum });
 			//res.render('game', { 'x': x3, 'btc_bs':max_compra_bs, 'btc_ds':mx_cp_py });
-			res.render('game', { 'x': x3, 'btc_bs':max_compra_bs, 'error': com_pay[0].ds });
+			res.render('game', { 'x': x3, 'btc_bs':max_compra_bs, 'error': mx_cp_py });
 		}))
 		.catch(function(err) {
 			res.render('game', { 'error': "recargue" });
