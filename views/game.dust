@@ -14,9 +14,9 @@
         {@traduce name="{priority}" /}<br>
 
         {@gt key=new-price.length value="10"}
-          {@convertir valor="{new-price}" /} dolares<br>
+          {@convertir valor="{new-price}" btc_bs="{btc_bs}" /} dolares<br>
         {:else}
-          {@convertir2 valor="{new-price}" /} dolares<br>
+          {@convertir2 valor="{new-price}" btc_bs="{btc_bs}" /} dolares<br>
         {/gt}
 
 

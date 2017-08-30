@@ -487,7 +487,7 @@ app.get('/game', function(req, res){
 			}	
 			mx_cp = Math.min.apply(null, bs_cp);
 			id_mx_cp = bs_cp.indexOf(mx_cp);
-			this.max_compra_bs = comprar[id_mx_cp].bs;
+			max_compra_bs = comprar[id_mx_cp].bs;
 			
 	//----------------------------------------------------------------------------------------------------
 	// COMPRA CON PAYONEER DOLARES O EUROS 	
@@ -577,7 +577,7 @@ app.get('/game', function(req, res){
 	//----------------------------------------------------------------------------------------------------
 
 	    var x3 = amazonResponse.data;
-			res.render('game', { 'x': x3 });
+			res.render('game', { 'x': x3, 'btc_bs': max_compra_bs});
 		}))
 		.catch(function(err) {
 			res.render('game', { 'error': "recargue" });
@@ -594,22 +594,20 @@ app.get('/game', function(req, res){
 
 	dust.helpers.convertir = function (chunk, context, bodies, params) {
 	    var valor = dust.helpers.tap(params.valor, chunk, context);
-	    //var btc = dust.helpers.tap(params.btc, chunk, context);
+	    var btc_bs = dust.helpers.tap(params.btc_bs, chunk, context);
 	    inicio = valor.indexOf("$")+1;
 	    corte = valor.substring(inicio);
 	    fin = corte.indexOf("&");
 	    cadena = valor.substring(inicio,(inicio+fin));
-	    // , 'btc_bs': this.max_compra_bs
-//	    return cadena;
-	    return this.max_compra_bs;
+	    return cadena*btc_bs;
 	};
 
 	dust.helpers.convertir2 = function (chunk, context, bodies, params) {
 	    var valor = dust.helpers.tap(params.valor, chunk, context);
-	    //var btc = dust.helpers.tap(params.btc, chunk, context);
+	    var btc_bs = dust.helpers.tap(params.btc_bs, chunk, context);
 	    inicio = valor.indexOf("$")+1;
 	    cadena = valor.substring(inicio);
-	    return cadena;
+	    return cadena*btc_bs;
 	};	
 
 
