@@ -1,2 +1,5 @@
 {>"layout" /}
 {error}<br>
+{#x}      
+      <h3>{@traduce name="{name}" /}</h3>
+{/x}
