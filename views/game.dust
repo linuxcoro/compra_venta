@@ -13,7 +13,6 @@
         {@traduce name="{date-added}" /}<br>
         {@traduce name="{priority}" /}<br>
 
-
         {@gt key=new-price.length value="10"}
           {@convertir valor="{new-price}" /} dolares<br>
         {:else}
