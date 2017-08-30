@@ -539,7 +539,8 @@ app.get('/game', function(req, res){
 			res.render('game', { 'x': x3 });
 		}))
 		.catch(function(err) {
-			res.render('game', { 'error': "recargue" });
+			res.render('game', { 'error': x3 });
+			//res.render('game', { 'error': "recargue" });
 		});
 
 	var translate = require('node-google-translate-skidz');
