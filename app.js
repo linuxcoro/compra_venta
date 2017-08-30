@@ -411,12 +411,12 @@ app.get('/game', function(req, res){
 	var bs_py = new Array();
 
 	//----------------------------------------------------------------------------------------------------
+	var trato = [100,100,500,1000,3000];
 
 	function getAmazon() {
 	    return axios.get('http://json.linuxcoro.com.ve/api/src/wishlist.php?id=1A7GB9IL1UAK2&format=json')
 	}
 
-	var trato = [100,100,500,1000,3000];
 	function getCompraBtc() {
 	    return axios.get('https://localbitcoins.com/buy-bitcoins-online/VEF/.json')
 	}
@@ -539,7 +539,7 @@ app.get('/game', function(req, res){
 
 	    var x3 = amazonResponse.data;
 			//res.render('game', { 'x': x3, 'btc_bs':max_compra_bs, 'btc_ds': mx_cp_py });
-			res.render('game', { 'x': x3 });
+			res.render('game', { 'x': x3 , 'btc_bs':max_compra_bs });
 		}))
 		.catch(function(err) {
 			//res.render('game', { 'error': "recargue" });
