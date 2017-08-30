@@ -557,7 +557,7 @@ app.get('/game', function(req, res){
 		.catch(function(err) {
 			//res.render('game', { 'error': "recargue" });
 			res.render('game', { 'error': mx_cp_py });
-			mx_cp_py
+			//mx_cp_py
 		});
 
 	var translate = require('node-google-translate-skidz');
