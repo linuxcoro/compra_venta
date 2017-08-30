@@ -13,6 +13,7 @@
         {@traduce name="{date-added}" /}<br>
         {@traduce name="{priority}" /}<br>
         {btc_bs}<br>
+        {btc_ds}<br>
       <p>
 
 

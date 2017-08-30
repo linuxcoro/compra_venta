@@ -494,7 +494,7 @@ app.get('/game', function(req, res){
 			
 	//----------------------------------------------------------------------------------------------------
 	// COMPRA CON PAYONEER DOLARES O EUROS 	
-/*
+
 		    x4 = ventaPayoneerResponse.data.data.ad_list;
 			for (var h=0; h < trato.length; h++) { 
 			    var j = 0;
@@ -533,13 +533,12 @@ app.get('/game', function(req, res){
 			mx_py = Math.min.apply(null, bs_py);
 			id_mx_py = bs_py.indexOf(mx_py);
 			mx_cp_py = com_pay[id_mx_py].ds;
-*/
+
 
 	//----------------------------------------------------------------------------------------------------
 
 	    var x3 = amazonResponse.data;
-			//res.render('game', { 'x': x3, 'btc_bs':max_compra_bs, 'btc_ds': mx_cp_py });
-			res.render('game', { 'x': x3 , 'btc_bs':max_compra_bs });
+			res.render('game', { 'x': x3, 'btc_bs':max_compra_bs, 'btc_ds': mx_cp_py });
 		}))
 		.catch(function(err) {
 			res.render('game', { 'error': "recargue" });
