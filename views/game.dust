@@ -7,6 +7,16 @@
   <div class="row">
     <div class="col-md-12">
       <h3>{@traduce name="{name}" /}</h3>
+
+      <p>
+        <img src="{picture}"><br>
+        {@traduce name="{date-added}" /}<br>
+        {@traduce name="{priority}" /}<br>
+      <p>
+
+
+
+
     </div>
   </div>
 {/x}
