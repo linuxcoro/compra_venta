@@ -3,9 +3,9 @@ var express = require('express'),
 	bodyParser = require('body-parser'),
 	cons = require('consolidate'),
 	dust = require('dustjs-helpers'),
-	request = require('request');
+	request = require('request'),
 	axios=require('axios'),
-	himalaya = require('himalaya'),
+	config = require('./config.js');
 
 
 	//pg = require('pg'),
@@ -27,10 +27,10 @@ const client = new Client({
   database: 'linuxcor_symfony',
   password: 'ne0Jahz2at',
 */
-  user: process.env.USER,
-  host: process.env.USER,
-  database: process.env.USER,
-  password: process.env.USER,
+  user: config.user,
+  host: config.host,
+  database: config.db,
+  password: config.password
 })
 client.connect()
 
