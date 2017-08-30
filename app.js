@@ -21,12 +21,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 const { Pool, Client } = require('pg')
 const client = new Client({
-/*
-  user: 'linux_linuxcor',
-  host: '74.91.28.22',
-  database: 'linuxcor_symfony',
-  password: 'ne0Jahz2at',
-*/
   user: config.user,
   host: config.host,
   database: config.db,
