@@ -431,7 +431,7 @@ app.get('/game', function(req, res){
 
 	//----------------------------------------------------------------------------------------------------
 	// COMPRA EN BOLIVARES VENEZUELA*/
-/*
+
 		    x1 = compraBtcResponse.data.data.ad_list;
 			for (var h=0; h < trato.length; h++) { 
 			    var j = 0;
@@ -491,6 +491,7 @@ app.get('/game', function(req, res){
 			mx_cp = Math.min.apply(null, bs_cp);
 			id_mx_cp = bs_cp.indexOf(mx_cp);
 			max_compra_bs = comprar[id_mx_cp].bs;
+			
 	//----------------------------------------------------------------------------------------------------
 	// COMPRA CON PAYONEER DOLARES O EUROS 	
 		    x4 = ventaPayoneerResponse.data.data.ad_list;
@@ -532,7 +533,7 @@ app.get('/game', function(req, res){
 			id_mx_py = bs_py.indexOf(mx_py);
 			mx_cp_py = com_pay[id_mx_py].ds;
 
-*/
+
 	//----------------------------------------------------------------------------------------------------
 
 	    var x3 = amazonResponse.data;
