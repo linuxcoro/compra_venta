@@ -537,11 +537,12 @@ app.get('/game', function(req, res){
 
 	    var x3 = amazonResponse.data;
 			res.render('game', { 'x': x3, 'btc_bs':max_compra_bs, 'btc_ds': mx_cp_py });
-		}))
+		}));
+/*
 		.catch(function(err) {
 			res.render('game', { 'error': "recargue" });
 		});
-
+*/
 	var translate = require('node-google-translate-skidz');
 	var assert = require('assert');
 	dust.helpers.traduce = function (chunk, context, bodies, params) {
