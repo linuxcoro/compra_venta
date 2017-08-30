@@ -539,45 +539,10 @@ app.get('/game', function(req, res){
 					desde:dat_com_pay[ind_men_comp].desde,
 					hasta:dat_com_pay[ind_men_comp].hasta,
 					banco:dat_com_pay[ind_men_comp].banco,
-					condicion:dat_com_pay[ind_men_comp].condicion					
-				};				
+					condicion:dat_com_pay[ind_men_comp].condicion				
+				}	
 				bs_py[h] = com_pay[h].ds
-
-/*			    
-				for (var i=0; i < x4.length; i++) { 
-					clientes=parseInt(x4[i].data.profile.trade_count);
-					if (clientes==trato[h]) {
-						dat_com_pay[j] = {
-							vendedor:x4[i].data.profile.username,				
-							ds:parseInt(x4[i].data.temp_price),
-							ventas:x4[i].data.profile.trade_count,
-							porcentaje:x4[i].data.profile.feedback_score,
-							desde:x4[i].data.min_amount,
-							hasta:x4[i].data.max_amount,
-							banco:x4[i].data.bank_name,
-							condicion:(x4[i].data.require_trade_volume>0)?"Si":"No"							
-						};
-						bus_com_pay[j]=dat_com_pay[j].ds
-						j++;
-					}
-				}
-*/				
-/*				
-				men_comp = Math.min.apply(null, bus_com_pay);
-				ind_men_comp = bus_com_pay.indexOf(men_comp);
-				com_pay[h] = {
-					vendedor:dat_com_pay[ind_men_comp].vendedor,				
-					ds:dat_com_pay[ind_men_comp].ds,
-					ventas:dat_com_pay[ind_men_comp].ventas,
-					porcentaje:dat_com_pay[ind_men_comp].porcentaje,
-					desde:dat_com_pay[ind_men_comp].desde,
-					hasta:dat_com_pay[ind_men_comp].hasta,
-					banco:dat_com_pay[ind_men_comp].banco,
-					condicion:dat_com_pay[ind_men_comp].condicion					
-				};				
-				bs_py[h] = com_pay[h].ds
-*/				
-			}			
+			};
 
 			mx_py = Math.min.apply(null, bs_py);
 			id_mx_py = bs_py.indexOf(mx_py);
@@ -590,7 +555,9 @@ app.get('/game', function(req, res){
 			res.render('game', { 'x': x3, 'btc_bs': max_compra_bs});
 		}))
 		.catch(function(err) {
-			res.render('game', { 'error': "recargue" });
+			//res.render('game', { 'error': "recargue" });
+			res.render('game', { 'error': mx_cp_py });
+			mx_cp_py
 		});
 
 	var translate = require('node-google-translate-skidz');
