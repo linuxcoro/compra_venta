@@ -542,8 +542,7 @@ app.get('/game', function(req, res){
 			res.render('game', { 'x': x3 , 'btc_bs':max_compra_bs });
 		}))
 		.catch(function(err) {
-			//res.render('game', { 'error': "recargue" });
-			res.render('game', { 'error': max_compra_bs });
+			res.render('game', { 'error': "recargue" });
 		});
 
 	var translate = require('node-google-translate-skidz');
