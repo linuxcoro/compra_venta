@@ -577,7 +577,7 @@ app.get('/game', function(req, res){
 	//----------------------------------------------------------------------------------------------------
 
 	    var x3 = amazonResponse.data;
-			res.render('game', { 'x': x3, 'btc_bs': this.max_compra_bs });
+			res.render('game', { 'x': x3 });
 		}))
 		.catch(function(err) {
 			res.render('game', { 'error': "recargue" });
@@ -599,7 +599,9 @@ app.get('/game', function(req, res){
 	    corte = valor.substring(inicio);
 	    fin = corte.indexOf("&");
 	    cadena = valor.substring(inicio,(inicio+fin));
-	    return cadena;
+	    // , 'btc_bs': this.max_compra_bs
+//	    return cadena;
+	    return this.max_compra_bs;
 	};
 
 	dust.helpers.convertir2 = function (chunk, context, bodies, params) {
