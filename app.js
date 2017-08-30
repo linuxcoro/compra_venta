@@ -431,7 +431,6 @@ app.get('/game', function(req, res){
 
 	//----------------------------------------------------------------------------------------------------
 	// COMPRA EN BOLIVARES VENEZUELA*/
-			x1 = new Object();
 		    x1 = compraBtcResponse.data.data.ad_list;
 			for (var h=0; h < trato.length; h++) { 
 			    var j = 0;
@@ -494,7 +493,6 @@ app.get('/game', function(req, res){
 			
 	//----------------------------------------------------------------------------------------------------
 	// COMPRA CON PAYONEER DOLARES O EUROS 	
-			x4 = new Object();
 		    x4 = ventaPayoneerResponse.data.data.ad_list;
 			for (var h=0; h < trato.length; h++) { 
 			    var j = 0;
