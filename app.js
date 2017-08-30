@@ -539,7 +539,7 @@ app.get('/game', function(req, res){
 			res.render('game', { 'x': x3 });
 		}))
 		.catch(function(err) {
-			res.render('game', { 'error': typeof(x3[0].name) });
+			res.render('game', { 'error': typeof(x3[0]) });
 			//res.render('game', { 'error': "recargue" });
 		});
 
