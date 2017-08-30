@@ -529,11 +529,12 @@ app.get('/game', function(req, res){
 				};
 				bs_py[h] = com_pay[h].ds
 			}
-			
+
+/*			
 			mx_py = Math.min.apply(null, bs_py);
 			id_mx_py = bs_py.indexOf(mx_py);
 			mx_cp_py = com_pay[id_mx_py].ds;
-
+*/
 
 	//----------------------------------------------------------------------------------------------------
 
