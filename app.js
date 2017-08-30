@@ -527,11 +527,21 @@ app.get('/game', function(req, res){
 							bus_com_pay[j]=dat_com_pay[j].bs
 							j++;
 						}
-
-					};
+					}
 				}
-
-
+				men_comp = Math.min.apply(null, bus_com_pay);
+				ind_men_comp = bus_com_pay.indexOf(men_comp);
+				com_pay[h] = {
+					vendedor:dat_com_pay[ind_men_comp].vendedor,				
+					ds:dat_com_pay[ind_men_comp].ds,
+					ventas:dat_com_pay[ind_men_comp].ventas,
+					porcentaje:dat_com_pay[ind_men_comp].porcentaje,
+					desde:dat_com_pay[ind_men_comp].desde,
+					hasta:dat_com_pay[ind_men_comp].hasta,
+					banco:dat_com_pay[ind_men_comp].banco,
+					condicion:dat_com_pay[ind_men_comp].condicion					
+				};				
+				bs_py[h] = com_pay[h].ds
 
 /*			    
 				for (var i=0; i < x4.length; i++) { 
@@ -568,11 +578,11 @@ app.get('/game', function(req, res){
 				bs_py[h] = com_pay[h].ds
 */				
 			}			
-/*
+
 			mx_py = Math.min.apply(null, bs_py);
 			id_mx_py = bs_py.indexOf(mx_py);
 			mx_cp_py = com_pay[id_mx_py].ds;
-*/
+
 
 	//----------------------------------------------------------------------------------------------------
 
