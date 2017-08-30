@@ -12,6 +12,8 @@
         <img src="{picture}"><br>
         {@traduce name="{date-added}" /}<br>
         {@traduce name="{priority}" /}<br>
+        {@convertir valor="{new-price}" /} dolares<br>
+
       <p>
 
 
