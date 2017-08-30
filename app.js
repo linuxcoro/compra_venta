@@ -577,7 +577,7 @@ app.get('/game', function(req, res){
 	//----------------------------------------------------------------------------------------------------
 
 	    var x3 = amazonResponse.data;
-			res.render('game', { 'x': x3, 'btc_bs': max_compra_bs });
+			res.render('game', { 'x': x3 });
 		}))
 		.catch(function(err) {
 			res.render('game', { 'error': "recargue" });

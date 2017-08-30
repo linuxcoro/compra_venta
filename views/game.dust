@@ -12,7 +12,6 @@
         <img src="{picture}"><br>
         {@traduce name="{date-added}" /}<br>
         {@traduce name="{priority}" /}<br>
-        {btc_bs}<br>
       <p>
 
 
