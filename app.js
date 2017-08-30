@@ -5,7 +5,7 @@ var express = require('express'),
 	dust = require('dustjs-helpers'),
 	request = require('request'),
 	axios=require('axios'),
-	config = require('./config.js');
+	config = require('./config.json');
 
 
 	//pg = require('pg'),
