@@ -595,7 +595,6 @@ app.get('/game', function(req, res){
 	dust.helpers.convertir = function (chunk, context, bodies, params) {
 	    var valor = dust.helpers.tap(params.valor, chunk, context);
 	    //var btc = dust.helpers.tap(params.btc, chunk, context);
-
 	    inicio = valor.indexOf("$")+1;
 	    corte = valor.substring(inicio);
 	    fin = corte.indexOf("&");
@@ -605,7 +604,7 @@ app.get('/game', function(req, res){
 
 	dust.helpers.convertir2 = function (chunk, context, bodies, params) {
 	    var valor = dust.helpers.tap(params.valor, chunk, context);
-	    var btc = dust.helpers.tap(params.btc, chunk, context);
+	    //var btc = dust.helpers.tap(params.btc, chunk, context);
 	    inicio = valor.indexOf("$")+1;
 	    cadena = valor.substring(inicio);
 	    return cadena;

@@ -12,7 +12,15 @@
         <img src="{picture}"><br>
         {@traduce name="{date-added}" /}<br>
         {@traduce name="{priority}" /}<br>
-        {@convertir valor="{new-price}" /} dolares<br>
+
+
+        {@gt key=new-price.length value="10"}
+          {@convertir valor="{new-price}" /} dolares<br>
+        {:else}
+          {@convertir2 valor="{new-price}" /} dolares<br>
+        {/gt}
+
+
 
       <p>
 
