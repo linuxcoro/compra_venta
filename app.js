@@ -546,8 +546,8 @@ app.get('/game', function(req, res){
 	var assert = require('assert');
 	dust.helpers.traduce = function (chunk, context, bodies, params) {
 	    var name = dust.helpers.tap(params.name, chunk, context);
-		//cad1 = spanish(name);
-	    return name;
+		cad1 = spanish(name);
+	    return cad1;
 	};	
 
 
