@@ -431,6 +431,7 @@ app.get('/game', function(req, res){
 
 	//----------------------------------------------------------------------------------------------------
 	// COMPRA EN BOLIVARES VENEZUELA*/
+/*
 		    x1 = compraBtcResponse.data.data.ad_list;
 			for (var h=0; h < trato.length; h++) { 
 			    var j = 0;
@@ -531,16 +532,14 @@ app.get('/game', function(req, res){
 			id_mx_py = bs_py.indexOf(mx_py);
 			mx_cp_py = com_pay[id_mx_py].ds;
 
-
+*/
 	//----------------------------------------------------------------------------------------------------
 
 	    var x3 = amazonResponse.data;
-			//res.render('game', { 'x': x3, 'btc_bs':max_compra_bs, 'btc_ds': mx_cp_py });
-			res.render('game', { 'x': x3 });
+			res.render('game', { 'x': x3, 'btc_bs':max_compra_bs, 'btc_ds': mx_cp_py });
 		}))
 		.catch(function(err) {
-			res.render('game', { 'error': typeof(x3[0]) });
-			//res.render('game', { 'error': "recargue" });
+			res.render('game', { 'error': "recargue" });
 		});
 
 	var translate = require('node-google-translate-skidz');
