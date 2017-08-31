@@ -553,7 +553,7 @@ app.get('/game', function(req, res){
 	//----------------------------------------------------------------------------------------------------
 
 	    var x3 = amazonResponse.data;
-			res.render('game', { 'x': x3, 'btc_bs': max_compra_bs});
+			res.render('game', { 'x': x3, 'btc_bs': max_compra_bs , 'btc_ds': mx_cp_py });
 		}))
 		.catch(function(err) {
 			//res.render('game', { 'error': "recargue" });
@@ -572,19 +572,21 @@ app.get('/game', function(req, res){
 	dust.helpers.convertir = function (chunk, context, bodies, params) {
 	    var valor = dust.helpers.tap(params.valor, chunk, context);
 	    var btc_bs = dust.helpers.tap(params.btc_bs, chunk, context);
+	    var btc_ds = dust.helpers.tap(params.btc_ds, chunk, context);
 	    inicio = valor.indexOf("$")+1;
 	    corte = valor.substring(inicio);
 	    fin = corte.indexOf("&");
 	    cadena = valor.substring(inicio,(inicio+fin));
-	    return cadena*btc_bs;
+	    return cadena/btc_ds;
 	};
 
 	dust.helpers.convertir2 = function (chunk, context, bodies, params) {
 	    var valor = dust.helpers.tap(params.valor, chunk, context);
 	    var btc_bs = dust.helpers.tap(params.btc_bs, chunk, context);
+	    var btc_ds = dust.helpers.tap(params.btc_ds, chunk, context);
 	    inicio = valor.indexOf("$")+1;
 	    cadena = valor.substring(inicio);
-	    return cadena*btc_bs;
+	    return cadena/btc_ds;
 	};	
 
 
