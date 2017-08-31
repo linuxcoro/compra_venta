@@ -498,9 +498,9 @@ app.get('/game', function(req, res){
 					clientes=parseInt(x4[i].data.profile.trade_count);
 					if (h==0) {
 						if (clientes<trato[h]) {
-							dat_com_pay[j] = {
+							dt_py[j] = {
 								vendedor:x4[i].data.profile.username,				
-								ds:parseInt(x4[i].data.temp_price),
+								bs:parseInt(x4[i].data.temp_price),
 								ventas:x4[i].data.profile.trade_count,
 								porcentaje:x4[i].data.profile.feedback_score,
 								desde:x4[i].data.min_amount,
@@ -508,15 +508,16 @@ app.get('/game', function(req, res){
 								banco:x4[i].data.bank_name,
 								condicion:(x4[i].data.require_trade_volume>0)?"Si":"No"							
 							};
-							bus_com_pay[j]=dat_com_pay[j].bs
+							bs_py[j]=dt_py[j].bs
 							j++;
 						}
 					}
 					else{
+
 						if (clientes==trato[h]) {
-							dat_com_pay[j] = {
+							dt_py[j] = {
 								vendedor:x4[i].data.profile.username,				
-								ds:parseInt(x4[i].data.temp_price),
+								bs:parseInt(x4[i].data.temp_price),
 								ventas:x4[i].data.profile.trade_count,
 								porcentaje:x4[i].data.profile.feedback_score,
 								desde:x4[i].data.min_amount,
@@ -524,29 +525,29 @@ app.get('/game', function(req, res){
 								banco:x4[i].data.bank_name,
 								condicion:(x4[i].data.require_trade_volume>0)?"Si":"No"							
 							};
-							bus_com_pay[j]=dat_com_pay[j].bs
+							bs_py[j]=dt_py[j].bs
 							j++;
 						}
-					}
-				}
-				men_comp = Math.min.apply(null, bus_com_pay);
-				ind_men_comp = bus_com_pay.indexOf(men_comp);
-				com_pay[h] = {
-					vendedor:dat_com_pay[ind_men_comp].vendedor,				
-					ds:dat_com_pay[ind_men_comp].ds,
-					ventas:dat_com_pay[ind_men_comp].ventas,
-					porcentaje:dat_com_pay[ind_men_comp].porcentaje,
-					desde:dat_com_pay[ind_men_comp].desde,
-					hasta:dat_com_pay[ind_men_comp].hasta,
-					banco:dat_com_pay[ind_men_comp].banco,
-					condicion:dat_com_pay[ind_men_comp].condicion				
-				}	
-				bs_py[h] = com_pay[h].ds
-			};
 
+					};
+				}
+				men_comp = Math.min.apply(null, bs_py);
+				id_mn_py = bs_py.indexOf(men_comp);
+				cp_py[h] = {
+					vendedor:dt_py[id_mn_py].vendedor,				
+					bs:dt_py[id_mn_py].bs,
+					ventas:dt_py[id_mn_py].ventas,
+					porcentaje:dt_py[id_mn_py].porcentaje,
+					desde:dt_py[id_mn_py].desde,
+					hasta:dt_py[id_mn_py].hasta,
+					banco:dt_py[id_mn_py].banco,
+					condicion:dt_py[id_mn_py].condicion
+				};
+				bs_py[h] = cp_py[h].bs
+			}	
 			mx_py = Math.min.apply(null, bs_py);
 			id_mx_py = bs_py.indexOf(mx_py);
-			mx_cp_py = com_pay[id_mx_py].ds;
+			mx_cp_py = cp_py[id_mx_py].bs;
 
 
 	//----------------------------------------------------------------------------------------------------
@@ -557,7 +558,6 @@ app.get('/game', function(req, res){
 		.catch(function(err) {
 			//res.render('game', { 'error': "recargue" });
 			res.render('game', { 'error': mx_cp_py });
-			//mx_cp_py
 		});
 
 	var translate = require('node-google-translate-skidz');
