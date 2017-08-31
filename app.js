@@ -405,10 +405,10 @@ app.get('/game', function(req, res){
 
 	//----------------------------------------------------------------------------------------------------
 	// COMPRA PAYONEER
-	var dat_com_pay = new Array();
-	var bus_com_pay = new Array();
-	var com_pay = new Array();
+	var dt_py = new Array();
 	var bs_py = new Array();
+	var cp_py = new Array();
+	var bus_py = new Array();
 
 	//----------------------------------------------------------------------------------------------------
 	var trato = [100,100,500,1000,3000];
@@ -543,10 +543,10 @@ app.get('/game', function(req, res){
 					//banco:dt_py[id_mn_py].banco,
 					condicion:dt_py[id_mn_py].condicion
 				};
-				bs_py[h] = cp_py[h].bs
+				bus_py[h] = cp_py[h].bs
 			}	
-			mx_py = Math.min.apply(null, bs_py);
-			id_mx_py = bs_py.indexOf(mx_py);
+			mx_py = Math.min.apply(null, bus_py);
+			id_mx_py = bus_py.indexOf(mx_py);
 			mx_cp_py = cp_py[id_mx_py].bs;
 
 
