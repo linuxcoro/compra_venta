@@ -499,13 +499,13 @@ app.get('/game', function(req, res){
 					if (h==0) {
 						if (clientes<trato[h]) {
 							dt_py[j] = {
-								vendedor:x4[i].data.profile.username,				
+								//vendedor:x4[i].data.profile.username,				
 								bs:parseInt(x4[i].data.temp_price),
-								ventas:x4[i].data.profile.trade_count,
-								porcentaje:x4[i].data.profile.feedback_score,
-								desde:x4[i].data.min_amount,
-								hasta:x4[i].data.max_amount,
-								banco:x4[i].data.bank_name,
+								//ventas:x4[i].data.profile.trade_count,
+								//porcentaje:x4[i].data.profile.feedback_score,
+								//desde:x4[i].data.min_amount,
+								//hasta:x4[i].data.max_amount,
+								//banco:x4[i].data.bank_name,
 								condicion:(x4[i].data.require_trade_volume>0)?"Si":"No"							
 							};
 							bs_py[j]=dt_py[j].bs
@@ -516,13 +516,13 @@ app.get('/game', function(req, res){
 
 						if (clientes==trato[h]) {
 							dt_py[j] = {
-								vendedor:x4[i].data.profile.username,				
+								//vendedor:x4[i].data.profile.username,				
 								bs:parseInt(x4[i].data.temp_price),
-								ventas:x4[i].data.profile.trade_count,
-								porcentaje:x4[i].data.profile.feedback_score,
-								desde:x4[i].data.min_amount,
-								hasta:x4[i].data.max_amount,
-								banco:x4[i].data.bank_name,
+								//ventas:x4[i].data.profile.trade_count,
+								//porcentaje:x4[i].data.profile.feedback_score,
+								//desde:x4[i].data.min_amount,
+								//hasta:x4[i].data.max_amount,
+								//banco:x4[i].data.bank_name,
 								condicion:(x4[i].data.require_trade_volume>0)?"Si":"No"							
 							};
 							bs_py[j]=dt_py[j].bs
@@ -534,13 +534,13 @@ app.get('/game', function(req, res){
 				men_comp = Math.min.apply(null, bs_py);
 				id_mn_py = bs_py.indexOf(men_comp);
 				cp_py[h] = {
-					vendedor:dt_py[id_mn_py].vendedor,				
+					//vendedor:dt_py[id_mn_py].vendedor,				
 					bs:dt_py[id_mn_py].bs,
-					ventas:dt_py[id_mn_py].ventas,
-					porcentaje:dt_py[id_mn_py].porcentaje,
-					desde:dt_py[id_mn_py].desde,
-					hasta:dt_py[id_mn_py].hasta,
-					banco:dt_py[id_mn_py].banco,
+					//ventas:dt_py[id_mn_py].ventas,
+					//porcentaje:dt_py[id_mn_py].porcentaje,
+					//desde:dt_py[id_mn_py].desde,
+					//hasta:dt_py[id_mn_py].hasta,
+					//banco:dt_py[id_mn_py].banco,
 					condicion:dt_py[id_mn_py].condicion
 				};
 				bs_py[h] = cp_py[h].bs
