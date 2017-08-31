@@ -135,7 +135,6 @@ app.get('/tabla', function(req, res){
 				for (var i=0; i < x1.length; i++) { 
 					clientes=parseInt(x1[i].data.profile.trade_count);
 					if (h==0) {
-
 						if (clientes<trato[h]) {
 							data_compra[j] = {
 								vendedor:x1[i].data.profile.username,				
@@ -169,9 +168,9 @@ app.get('/tabla', function(req, res){
 							busca_compra[j]=data_compra[j].bs
 							j++;
 						}
-
 					};
 				}
+
 				men_comp = Math.min.apply(null, busca_compra);
 				ind_men_comp = busca_compra.indexOf(men_comp);
 				comprar[h] = {
@@ -193,16 +192,65 @@ app.get('/tabla', function(req, res){
 			    var j = 0;
 				for (var i=0; i < x3.length; i++) { 
 					clientes=parseInt(x3[i].data.profile.trade_count);
+
+
+
+
+
+
+
+
+
+
+
+					if (h==0) {
+						if (clientes<trato[h]) {
+							data_venta[j] = {
+								vendedor:x3[i].data.profile.username,				
+								bs:parseInt(x3[i].data.temp_price),
+								ventas:x3[i].data.profile.trade_count,
+								porcentaje:x3[i].data.profile.feedback_score,
+								desde:x3[i].data.min_amount,
+								hasta:x3[i].data.max_amount,
+								banco:x3[i].data.bank_name,
+								condicion:(x3[i].data.require_trade_volume>0)?"Si":"No"							
+							};
+							busca_venta[j]=data_venta[j].bs
+							j++;
+						}
+					}
+					else{
+						if (clientes==trato[h]) {
+							data_venta[j] = {
+								vendedor:x3[i].data.profile.username,				
+								bs:parseInt(x3[i].data.temp_price),
+								ventas:x3[i].data.profile.trade_count,
+								porcentaje:x3[i].data.profile.feedback_score,
+								desde:x3[i].data.min_amount,
+								hasta:x3[i].data.max_amount,
+								banco:x3[i].data.bank_name,
+								condicion:(x3[i].data.require_trade_volume>0)?"Si":"No"							
+							};
+							busca_venta[j]=data_venta[j].bs
+							j++;
+						}
+					};
+
+
+
+/*
 					if (clientes==trato[h]) {
 						data_venta[j] = {
 							vendedor:x3[i].data.profile.username,				
 							bs:parseInt(x3[i].data.temp_price),
 							ventas:x3[i].data.profile.trade_count,
 							porcentaje:x3[i].data.profile.feedback_score
+
 						};
 						busca_venta[j]=data_venta[j].bs
 						j++;
 					}
+*/
 				}
 				men_comp = Math.max.apply(null, busca_venta);
 				ind_men_comp = busca_venta.indexOf(men_comp);
@@ -214,8 +262,6 @@ app.get('/tabla', function(req, res){
 				};
 			}	
 			transa.sort(function(a, b){return b['bs']-a['bs']});
-
-
 
 			res.render('tabla', { 'comprar': comprar,'venta': transa });
 		}));
