@@ -124,23 +124,12 @@ app.get('/tabla', function(req, res){
 	    return axios.get('https://localbitcoins.com/sell-bitcoins-online/neteller/.json')
 	}
 
-/*
-	function getDolar() {
-	    return axios.get('http://api.bitcoinvenezuela.com/DolarToday.php?json=yes')
-	}
-*/
-
-/*
-	axios.all([getCompraBtc(),getVentaBtc(),getCompraPayoneer(),getVentaPayoneer(),getCompraNeteller(),getVentaNeteller(),getDolar()])
-		.then(axios.spread(function (compraBtcResponse,ventaBtcResponse,compraPayoneerResponse,ventaPayoneerResponse,compraNetellerResponse,ventaNetellerResponse, dolarResponse) {
-*/
 	axios.all([getCompraBtc(),getVentaBtc(),getCompraPayoneer(),getVentaPayoneer(),getCompraNeteller(),getVentaNeteller()])
 		.then(axios.spread(function (compraBtcResponse,ventaBtcResponse,compraPayoneerResponse,ventaPayoneerResponse,compraNetellerResponse,ventaNetellerResponse) {
 
 	/*----------------------------------------------------------------------------------------------------*/
 	/* COMPRA EN BOLIVARES VENEZUELA*/
 		    x1 = compraBtcResponse.data.data.ad_list;
-			//this.x2 = parseInt(dolarResponse.data.USD.dolartoday);
 			for (var h=0; h < trato.length; h++) { 
 			    var j = 0;
 				for (var i=0; i < x1.length; i++) { 
@@ -151,7 +140,6 @@ app.get('/tabla', function(req, res){
 							data_compra[j] = {
 								vendedor:x1[i].data.profile.username,				
 								bs:parseInt(x1[i].data.temp_price),
-								//ds:parseInt(x1[i].data.temp_price/x2),
 								ventas:x1[i].data.profile.trade_count,
 								porcentaje:x1[i].data.profile.feedback_score,
 								desde:x1[i].data.min_amount,
@@ -171,7 +159,6 @@ app.get('/tabla', function(req, res){
 							data_compra[j] = {
 								vendedor:x1[i].data.profile.username,				
 								bs:parseInt(x1[i].data.temp_price),
-								//ds:parseInt(x1[i].data.temp_price/x2),
 								ventas:x1[i].data.profile.trade_count,
 								porcentaje:x1[i].data.profile.feedback_score,
 								desde:x1[i].data.min_amount,
@@ -184,18 +171,12 @@ app.get('/tabla', function(req, res){
 						}
 
 					};
-
-
-
-
-
 				}
 				men_comp = Math.min.apply(null, busca_compra);
 				ind_men_comp = busca_compra.indexOf(men_comp);
 				comprar[h] = {
 					vendedor:data_compra[ind_men_comp].vendedor,				
 					bs:data_compra[ind_men_comp].bs,
-					//ds:data_compra[ind_men_comp].ds,
 					ventas:data_compra[ind_men_comp].ventas,
 					porcentaje:data_compra[ind_men_comp].porcentaje,
 					desde:data_compra[ind_men_comp].desde,
@@ -207,7 +188,6 @@ app.get('/tabla', function(req, res){
 			comprar.sort(function(a, b){return a['bs']-b['bs']});
 
 	/* VENTA EN BOLIVARES VENEZUELA*/
-
 		    x3 = ventaBtcResponse.data.data.ad_list;
 			for (var h=0; h < trato.length; h++) { 
 			    var j = 0;
@@ -217,7 +197,6 @@ app.get('/tabla', function(req, res){
 						data_venta[j] = {
 							vendedor:x3[i].data.profile.username,				
 							bs:parseInt(x3[i].data.temp_price),
-							//ds:parseInt(x3[i].data.temp_price/x2),
 							ventas:x3[i].data.profile.trade_count,
 							porcentaje:x3[i].data.profile.feedback_score
 						};
@@ -230,7 +209,6 @@ app.get('/tabla', function(req, res){
 				transa[h] = {
 					vendedor:data_venta[ind_men_comp].vendedor,				
 					bs:data_venta[ind_men_comp].bs,
-					//ds:data_venta[ind_men_comp].ds,
 					ventas:data_venta[ind_men_comp].ventas,
 					porcentaje:data_venta[ind_men_comp].porcentaje
 				};
@@ -239,154 +217,7 @@ app.get('/tabla', function(req, res){
 
 
 
-
-
-
-/*
-
-	//----------------------------------------------------------------------------------------------------
-	// COMPRA CON PAYONEER DOLARES O EUROS 
-		    x4 = compraPayoneerResponse.data.data.ad_list;
-			//x2 = parseInt(dolarResponse.data.USD.dolartoday);
-			for (var h=0; h < trato.length; h++) { 
-			    var j = 0;
-				for (var i=0; i < x4.length; i++) { 
-					clientes=parseInt(x4[i].data.profile.trade_count);
-					if (clientes==trato[h]) {
-						dat_com_pay[j] = {
-							vendedor:x4[i].data.profile.username,				
-							ds:parseInt(x4[i].data.temp_price),
-							ventas:x4[i].data.profile.trade_count,
-							porcentaje:x4[i].data.profile.feedback_score,
-							desde:x4[i].data.min_amount,
-							hasta:x4[i].data.max_amount,
-							banco:x4[i].data.bank_name,
-							condicion:(x4[i].data.require_trade_volume>0)?"Si":"No"							
-						};
-						bus_com_pay[j]=dat_com_pay[j].ds
-						j++;
-					}
-				}
-				men_comp = Math.min.apply(null, bus_com_pay);
-				ind_men_comp = bus_com_pay.indexOf(men_comp);
-				com_pay[h] = {
-					vendedor:dat_com_pay[ind_men_comp].vendedor,				
-					ds:dat_com_pay[ind_men_comp].ds,
-					ventas:dat_com_pay[ind_men_comp].ventas,
-					porcentaje:dat_com_pay[ind_men_comp].porcentaje,
-					desde:dat_com_pay[ind_men_comp].desde,
-					hasta:dat_com_pay[ind_men_comp].hasta,
-					banco:dat_com_pay[ind_men_comp].banco,
-					condicion:dat_com_pay[ind_men_comp].condicion
-				};
-			}	
-			com_pay.sort(function(a, b){return a['ds']-b['ds']});
-
-	// VENTA CON PAYONEER DOLARES O EUROS
-		    x5 = ventaPayoneerResponse.data.data.ad_list;
-			for (var h=0; h < trato.length; h++) { 
-			    var j = 0;
-				for (var i=0; i < x5.length; i++) { 
-					clientes=parseInt(x5[i].data.profile.trade_count);
-					if (clientes==trato[h]) {
-						dat_ven_pay[j] = {
-							vendedor:x5[i].data.profile.username,				
-							ds:parseInt(x5[i].data.temp_price),
-							ventas:x5[i].data.profile.trade_count,
-							porcentaje:x5[i].data.profile.feedback_score
-						};
-						bus_ven_pay[j]=dat_ven_pay[j].ds
-						j++;
-					}
-				}
-				men_comp = Math.max.apply(null, bus_ven_pay);
-				ind_men_comp = bus_ven_pay.indexOf(men_comp);
-				tra_pay[h] = {
-					vendedor:dat_ven_pay[ind_men_comp].vendedor,				
-					ds:dat_ven_pay[ind_men_comp].ds,
-					ventas:dat_ven_pay[ind_men_comp].ventas,
-					porcentaje:dat_ven_pay[ind_men_comp].porcentaje
-				};
-			}	
-			tra_pay.sort(function(a, b){return b['ds']-a['ds']});
-
-
-
-	//----------------------------------------------------------------------------------------------------
-	// COMPRA CON NETELLER DOLARES O EUROS 
-
-
-		    x6 = compraNetellerResponse.data.data.ad_list;
-			//x2 = parseInt(dolarResponse.data.USD.dolartoday);
-			for (var h=0; h < trato.length; h++) { 
-			    var j = 0;
-				for (var i=0; i < x6.length; i++) { 
-					clientes=parseInt(x6[i].data.profile.trade_count);
-					if (clientes==trato[h]) {
-						dat_com_net[j] = {
-							vendedor:x6[i].data.profile.username,				
-							bs:parseInt(x6[i].data.temp_price),
-							ventas:x6[i].data.profile.trade_count,
-							porcentaje:x6[i].data.profile.feedback_score,
-							desde:x6[i].data.min_amount,
-							hasta:x6[i].data.max_amount,
-							banco:x6[i].data.bank_name,
-							condicion:(x6[i].data.require_trade_volume>0)?"Si":"No"							
-						};
-						bus_com_net[j]=dat_com_net[j].bs
-						j++;
-					}
-				}
-				men_comp = Math.min.apply(null, bus_com_net);
-				ind_men_comp = bus_com_net.indexOf(men_comp);
-				com_net[h] = {
-					vendedor:dat_com_net[ind_men_comp].vendedor,				
-					bs:dat_com_net[ind_men_comp].bs,
-					ds:dat_com_net[ind_men_comp].ds,
-					ventas:dat_com_net[ind_men_comp].ventas,
-					porcentaje:dat_com_net[ind_men_comp].porcentaje,
-					desde:dat_com_net[ind_men_comp].desde,
-					hasta:dat_com_net[ind_men_comp].hasta,
-					banco:dat_com_net[ind_men_comp].banco,
-					condicion:dat_com_net[ind_men_comp].condicion
-				};
-			}	
-			com_net.sort(function(a, b){return a['bs']-b['bs']});
-
-	// VENTA CON NETELLER DOLARES O EUROS 
-		    x7 = ventaNetellerResponse.data.data.ad_list;
-			for (var h=0; h < trato.length; h++) { 
-			    var j = 0;
-				for (var i=0; i < x7.length; i++) { 
-					clientes=parseInt(x7[i].data.profile.trade_count);
-					if (clientes==trato[h]) {
-						dat_ven_net[j] = {
-							vendedor:x7[i].data.profile.username,				
-							bs:parseInt(x7[i].data.temp_price),
-							ds:parseInt(x7[i].data.temp_price/x2),
-							ventas:x7[i].data.profile.trade_count,
-							porcentaje:x7[i].data.profile.feedback_score
-						};
-						bus_ven_net[j]=dat_ven_net[j].bs
-						j++;
-					}
-				}
-				men_comp = Math.max.apply(null, bus_ven_net);
-				ind_men_comp = bus_ven_net.indexOf(men_comp);
-				tra_net[h] = {
-					vendedor:dat_ven_net[ind_men_comp].vendedor,				
-					bs:dat_ven_net[ind_men_comp].bs,
-					ds:dat_ven_net[ind_men_comp].ds,
-					ventas:dat_ven_net[ind_men_comp].ventas,
-					porcentaje:dat_ven_net[ind_men_comp].porcentaje
-				};
-			}	
-			tra_net.sort(function(a, b){return b['bs']-a['bs']});
-*/
-	//----------------------------------------------------------------------------------------------------
-
-			//res.render('tabla', { 'comprar': comprar,'venta': transa, 'dolar': x2, 'com_pay': com_pay, 'tra_pay': tra_pay, 'com_net': com_net, 'tra_pay': tra_net });
-			res.render('tabla', { 'comprar': comprar,'venta': transa, 'com_pay': com_pay, 'tra_pay': tra_pay, 'com_net': com_net, 'tra_pay': tra_net });
+			res.render('tabla', { 'comprar': comprar,'venta': transa });
 		}));
 });
 
