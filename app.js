@@ -192,17 +192,6 @@ app.get('/tabla', function(req, res){
 			    var j = 0;
 				for (var i=0; i < x3.length; i++) { 
 					clientes=parseInt(x3[i].data.profile.trade_count);
-
-
-
-
-
-
-
-
-
-
-
 					if (h==0) {
 						if (clientes<trato[h]) {
 							data_venta[j] = {
@@ -258,7 +247,16 @@ app.get('/tabla', function(req, res){
 					vendedor:data_venta[ind_men_comp].vendedor,				
 					bs:data_venta[ind_men_comp].bs,
 					ventas:data_venta[ind_men_comp].ventas,
-					porcentaje:data_venta[ind_men_comp].porcentaje
+					porcentaje:data_venta[ind_men_comp].porcentaje,
+
+					desde:data_venta[ind_men_comp].desde,
+					hasta:data_venta[ind_men_comp].hasta,
+					banco:data_venta[ind_men_comp].banco,
+					condicion:data_venta[ind_men_comp].condicion
+
+
+
+
 				};
 			}	
 			transa.sort(function(a, b){return b['bs']-a['bs']});
