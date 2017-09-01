@@ -38,6 +38,13 @@
 			<td>Bolivar</td>
 			<td>Ventas</td>
 			<td>Confianza</td>
+
+			<td>Rango de Compras</td>
+			<td>Deposito BTC</td>
+			<td>Entidad Financiera</td>			
+
+
+
 		</tr>	
 		{#venta}
 		<tr style="background: {cycle values='#E0F8F7, #FAFAFA'}">
@@ -45,6 +52,13 @@
 			<td>{bs} Bs</td>
 			<td>{ventas}</td>
 			<td>{porcentaje}%</td>
+
+
+			<td>{desde}-{hasta}</td>
+			<td>{condicion}</td>
+			<td>{banco}</td>
+
+
 		</tr>	
 		{/venta}
 		</table>
