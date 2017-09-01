@@ -199,7 +199,7 @@ app.get('/tabla', function(req, res){
 								vendedor:x3[i].data.profile.username,				
 								bs:parseInt(x3[i].data.temp_price),
 								ventas:x3[i].data.profile.trade_count,
-								porcentaje:x3[i].data.profile.feedback_score,
+								porcentaje:x3[i].data.profile.feedback_score
 								//desde:x3[i].data.min_amount,
 								//hasta:x3[i].data.max_amount,
 								//banco:x3[i].data.bank_name,
@@ -215,7 +215,7 @@ app.get('/tabla', function(req, res){
 								vendedor:x3[i].data.profile.username,				
 								bs:parseInt(x3[i].data.temp_price),
 								ventas:x3[i].data.profile.trade_count,
-								porcentaje:x3[i].data.profile.feedback_score,
+								porcentaje:x3[i].data.profile.feedback_score
 								//desde:x3[i].data.min_amount,
 								//hasta:x3[i].data.max_amount,
 								//banco:x3[i].data.bank_name,
@@ -232,7 +232,7 @@ app.get('/tabla', function(req, res){
 					vendedor:data_venta[ind_men_comp].vendedor,				
 					bs:data_venta[ind_men_comp].bs,
 					ventas:data_venta[ind_men_comp].ventas,
-					porcentaje:data_venta[ind_men_comp].porcentaje,
+					porcentaje:data_venta[ind_men_comp].porcentaje
 					//desde:data_venta[ind_men_comp].desde,
 					//hasta:data_venta[ind_men_comp].hasta,
 					//banco:data_venta[ind_men_comp].banco,
