@@ -187,7 +187,7 @@ app.get('/tabla', function(req, res){
 			comprar.sort(function(a, b){return a['bs']-b['bs']});
 
 	// VENTA EN BOLIVARES VENEZUELA
-/*
+
 		    x3 = ventaBtcResponse.data.data.ad_list;
 			for (var h=0; h < trato.length; h++) { 
 			    var j = 0;
@@ -203,7 +203,7 @@ app.get('/tabla', function(req, res){
 								desde:x3[i].data.min_amount,
 								hasta:x3[i].data.max_amount,
 								banco:x3[i].data.bank_name,
-								condicion:(x3[i].data.require_trade_volume>0)?"Si":"No"							
+								//condicion:(x3[i].data.require_trade_volume>0)?"Si":"No"							
 							};
 							busca_venta[j]=data_venta[j].bs
 							j++;
@@ -219,7 +219,7 @@ app.get('/tabla', function(req, res){
 								desde:x3[i].data.min_amount,
 								hasta:x3[i].data.max_amount,
 								banco:x3[i].data.bank_name,
-								condicion:(x3[i].data.require_trade_volume>0)?"Si":"No"							
+								//condicion:(x3[i].data.require_trade_volume>0)?"Si":"No"							
 							};
 							busca_venta[j]=data_venta[j].bs
 							j++;
@@ -233,15 +233,14 @@ app.get('/tabla', function(req, res){
 					bs:data_venta[ind_men_comp].bs,
 					ventas:data_venta[ind_men_comp].ventas,
 					porcentaje:data_venta[ind_men_comp].porcentaje,
-
 					desde:data_venta[ind_men_comp].desde,
 					hasta:data_venta[ind_men_comp].hasta,
 					banco:data_venta[ind_men_comp].banco,
-					condicion:data_venta[ind_men_comp].condicion
+					//condicion:data_venta[ind_men_comp].condicion
 				};
 			}	
 			transa.sort(function(a, b){return b['bs']-a['bs']});
-*/
+
 			res.render('tabla', { 'comprar': comprar,'venta': transa });
 		}));
 });
