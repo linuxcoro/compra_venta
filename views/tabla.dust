@@ -22,6 +22,15 @@
 		{/comprar}
 		</table>
 
+
+
+
+
+
+
+
+
+
 		<h3>Vender tus BTC localbitcoins</h3>
 		<table>
 		<tr style="background: #E0E6F8">
@@ -29,9 +38,6 @@
 			<td>Bolivar</td>
 			<td>Ventas</td>
 			<td>Confianza</td>
-			<td>Rango de Ventas</td>
-			<td>Deposito BTC</td>
-			<td>Entidad Financiera</td>			
 		</tr>	
 		{#venta}
 		<tr style="background: {cycle values='#E0F8F7, #FAFAFA'}">
@@ -39,9 +45,10 @@
 			<td>{bs} Bs</td>
 			<td>{ventas}</td>
 			<td>{porcentaje}%</td>
-			<td>{desde}-{hasta}</td>
-			<td>{condicion}</td>
-			<td>{banco}</td>
 		</tr>	
 		{/venta}
 		</table>
+
+
+
+
