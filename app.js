@@ -186,7 +186,8 @@ app.get('/tabla', function(req, res){
 			}	
 			comprar.sort(function(a, b){return a['bs']-b['bs']});
 
-	/* VENTA EN BOLIVARES VENEZUELA*/
+	// VENTA EN BOLIVARES VENEZUELA
+/*
 		    x3 = ventaBtcResponse.data.data.ad_list;
 			for (var h=0; h < trato.length; h++) { 
 			    var j = 0;
@@ -240,6 +241,7 @@ app.get('/tabla', function(req, res){
 				};
 			}	
 			transa.sort(function(a, b){return b['bs']-a['bs']});
+*/
 			res.render('tabla', { 'comprar': comprar,'venta': transa });
 		}));
 });
