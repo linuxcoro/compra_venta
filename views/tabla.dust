@@ -22,15 +22,6 @@
 		{/comprar}
 		</table>
 
-
-
-
-
-
-
-
-
-
 		<h3>Vender tus BTC localbitcoins</h3>
 		<table>
 		<tr style="background: #E0E6F8">
@@ -54,16 +45,3 @@
 		</tr>	
 		{/venta}
 		</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
