@@ -100,7 +100,7 @@ app.get('/tabla', function(req, res){
 
 	//----------------------------------------------------------------------------------------------------
 
-	var trato = [100,100,500,1000,3000];
+	var trato = [100,1,100,500,1000,3000];
 	function getCompraBtc() {
 	    return axios.get('https://localbitcoins.com/buy-bitcoins-online/VEF/.json')
 	}
