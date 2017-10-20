@@ -75,7 +75,7 @@ $(function () {
 	};
 
 //	$.getJSON('http://www.highcharts.com/samples/data/jsonp.php?filename=aapl-ohlcv.json&callback=?', function (data) {
-	$.getJSON('http://localhost/velas/velas.php?filename=new-intraday.json&callback=?', function (data) {
+	$.getJSON('http://consulta.linuxcoro.com.ve/velas/velas.php?filename=new-intraday.json&callback=?', function (data) {
 		adv_options.series[0].type = 'candlestick';
 		adv_options.series[0].data = data;
 		$('#chart-advanced').highcharts('StockChart', adv_options);
