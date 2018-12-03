@@ -1,8 +1,0 @@
-[
-{#medidas}
-	{@formatDate x="{x}" y="{y}" /},
-{/medidas}
-{#ultimo}
-	{@formatDate x="{x}" y="{y}" /}
-{/ultimo}
-]
