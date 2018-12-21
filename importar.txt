@@ -1,0 +1,32 @@
+mongoimport -d test_nodeapi -c rutas --type csv --file rutas.csv --headerline
+
+
+
+
+
+
+mongoimport -h ds243798.mlab.com:43798 -d linuxcoro -c rutas -u test -p test123 --file rutas.csv --type csv --headerline
+
+.\mongoimport.exe -h ds243798.mlab.com:43798 -d linuxcoro -c rutas -u test -p test123 --file rutas.csv --type csv --headerline
+
+
+.\mongoexport.exe -h ds243798.mlab.com:43798 -d linuxcoro -c category -u test -p test123  -o category.json
+
+
+.\mongoexport.exe -h ds243798.mlab.com:43798 -d linuxcoro -c scraping -u test -p test123 -o scraping.json
+
+
+
+.\mongoexport.exe -h ds243798.mlab.com:43798 -d linuxcoro -c scraping -u test -p test123 -o scraping.csv --type csv --fields hash,titulo,slogan,telefono,link,categoria,palabras,direccion,horario
+
+
+
+    "hash": "$2a$10$zYw8h6kTAz2m1lWj8hHOPOpsAZDdfpZG2Herjbr45NQwiwU7u.8QC",
+    "titulo": "Agi Construcciones",
+    "slogan": "VENTA DE HORMIGON ELABORADO - HORMIGONES ESPECIALES - SERVICIO DE BOMBAS - ARIDOS - PAVIMENTACION - MOVIMIENTOS DE SUELO",
+    "telefono": "(0387) 428 - 2758",
+    "link": "",
+    "categoria": "Construcción",
+    "palabras": "",
+    "direccion": "Av R Durañona 1050   Salta - Salta",
+    "horario": 

@@ -1,0 +1,5 @@
+# dependencies
+/node_modules
+
+# config para github
+/config/conn.json
